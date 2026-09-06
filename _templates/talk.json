@@ -1,0 +1,32 @@
+{
+  "_설명": "발표 메타의 유일한 원천. 이 파일을 <발표폴더>/talk.json 으로 복사해 채운다. _ 로 시작하는 키는 주석이며 아무도 읽지 않는다.",
+
+  "id": "2026-09-15-kapa-decline",
+  "title": "지방소멸 대응 정책의 공간적 함의",
+  "titleEn": "Spatial Implications of Local Extinction Policy",
+
+  "_행사": "event 는 표지 맨 윗줄과 푸터에, venue 는 날짜 옆에 들어간다.",
+  "event": "한국도시행정학회 2026 추계학술대회",
+  "venue": "충북대학교 개신문화관",
+  "date": "2026. 9. 15.",
+
+  "_분류": "kind 는 학술대회 · 초청세미나 · 정책자문 · 특강 · 워크숍 중 하나. 루트 목록의 태그가 된다.",
+  "kind": "학술대회",
+  "role": "발표",
+
+  "_발표자": "authors 의 첫 사람이 발표자다 (표지에서 굵게 나온다).",
+  "authors": ["권규상"],
+  "affiliation": "충북대학교 도시공학과",
+
+  "_공개": "public 은 공개 번들(PUBLIC_ONLY=1 build-site.sh)에 담아도 되는지의 표식이다. 기본은 false 이고, true 로 바꾸는 것은 사람이 판단한다. 판단 근거는 private/공개-판단.md 에 적는다.",
+  "public": false,
+
+  "_표시": "label 은 목록에 쓰는 짧은 이름, footer 는 본문 슬라이드 아래 한 줄, kicker 는 본문 슬라이드 머리말이며 없으면 넣지 않는다.",
+  "label": "한국도시행정학회 2026 추계학술대회",
+  "footer": "한국도시행정학회 2026 추계학술대회 / 2026. 9. 15. / 권규상",
+
+  "_덱": "보통 하나다. 15분판·30분판처럼 변형이 생기면 원소를 늘리고 file 을 deck-15min.html 처럼 짓는다. minutes 는 발표 시간 예산이며 talk-init.js 가 장당 초를 콘솔에 찍는다.",
+  "decks": [
+    { "no": 1, "label": "본 발표 (20분)", "file": "deck.html", "minutes": 20, "status": "done" }
+  ]
+}

@@ -1,0 +1,30 @@
+# macOS / Google Drive Desktop 부산물
+.DS_Store
+desktop.ini
+.tmp.drivedownload/
+.tmp.driveupload/
+
+# 비공개 — 미공표 데이터, 심사 중 원고, 자문 대상 기관이 준 자료.
+# 저장소가 공개이므로 여기 한 줄이 유일한 방어선이다. (CLAUDE.md 참조)
+*/private/
+
+# 원본·입력 자료는 버전관리하지 않는다.
+# 받은 pptx·초록·참고문헌 스캔이 들어간다. Google Drive 가 이미 동기화와
+# 버전 이력을 제공하며, pptx 를 커밋하면 고칠 때마다 통째로 쌓인다.
+*/source/
+
+# 빌드 산출물 — _scripts/build-pdf.sh 로 언제든 다시 만든다.
+# 배포본에는 들어가야 하지만(다운로드 버튼이 가리킨다) git 에 둘 필요는 없다.
+*/pdf/
+dist/
+
+# 루트에 임시로 던져 둔 원본 (발표 폴더의 source/ 로 옮기기 전 상태)
+/*.pptx
+/*.key
+/*.pdf
+/*.hwp
+/*.hwpx
+/*.docx
+
+# 임시
+*.log
