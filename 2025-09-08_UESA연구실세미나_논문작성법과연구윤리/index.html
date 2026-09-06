@@ -1,0 +1,127 @@
+<!doctype html>
+<!--
+  발표 안내 페이지 — 이 파일을 <발표폴더>/index.html 로 복사한다.
+  발표명·행사·날짜가 하드코딩돼 있지 않으므로 그대로 복사하면 된다.
+-->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>발표자료</title>
+<link rel="stylesheet" href="../_shared/theme/tokens.css">
+<style>
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 500 16px/1.6 'Pretendard', -apple-system, sans-serif;
+    letter-spacing: -0.01em;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  a.back { font-size: 13px; color: var(--muted); text-decoration: none; }
+  a.back:hover { color: var(--accent-red); }
+  .label { margin: 24px 0 0; font-size: 15px; font-weight: 700; color: var(--accent-red); }
+  h1 { margin: 6px 0 0; font-size: 32px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.25; }
+  .en { margin: 4px 0 0; font-size: 14px; font-weight: 400; color: var(--muted); }
+  .meta { margin: 14px 0 0; font-size: 14px; font-weight: 400; color: var(--ink-2); }
+  .meta span + span::before { content: ' · '; color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 20px 0 0; }
+
+  ul { list-style: none; margin: 8px 0 0; padding: 0; }
+  li { border-bottom: 1px solid #E8E8E8; }
+  .row { display: flex; align-items: baseline; gap: 14px; padding: 15px 2px; }
+  .ttl { flex: 1 1 auto; font-size: 16px; font-weight: 500; color: var(--ink); text-decoration: none; }
+  a.ttl:hover { color: var(--accent-blue); }
+  .ttl.pending { color: #AAA; }
+  .mins { flex: 0 0 auto; font-size: 13px; font-weight: 400; color: var(--muted); }
+  .pdf {
+    flex: 0 0 auto; font-size: 12px; font-weight: 500;
+    color: #FFF; background: var(--brand-crimson);
+    padding: 4px 9px; border-radius: 3px; text-decoration: none;
+  }
+  .pdf[hidden] { display: none; }
+  .tag {
+    flex: 0 0 auto; font-size: 11px; font-weight: 500;
+    color: var(--muted); border: 1px solid #DDD; padding: 3px 7px; border-radius: 3px;
+  }
+  footer { margin-top: 40px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 전체 발표</a>
+  <p class="label" id="event"></p>
+  <h1 id="title"></h1>
+  <p class="en" id="en"></p>
+  <p class="meta" id="meta"></p>
+  <hr>
+  <ul id="list"></ul>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(async function () {
+  const t = await (await fetch('talk.json')).json();
+  const folder = decodeURIComponent(
+    location.pathname.split('/').filter(Boolean).slice(-2, -1)[0] || '');
+
+  document.getElementById('event').textContent = t.event || '';
+  document.getElementById('title').textContent = t.title || '';
+  document.getElementById('en').textContent = t.titleEn || '';
+  document.title = (t.title || '발표자료') + ' — 발표자료';
+
+  const meta = document.getElementById('meta');
+  [[t.date, t.venue].filter(Boolean).join(' · '),
+   (t.authors || []).join(' · '),
+   t.affiliation].filter(Boolean).forEach((s) => {
+    const el = document.createElement('span');
+    el.textContent = s;
+    meta.append(el);
+  });
+
+  const ul = document.getElementById('list');
+  const many = (t.decks || []).length > 1;
+  for (const d of (t.decks || [])) {
+    const li = document.createElement('li');
+    const row = document.createElement('div');
+    row.className = 'row';
+
+    // file 이 없으면 링크를 걸 수 없다. 이 자리에서 TypeError 가 나면
+    // 목록이 통째로 빈다 — 강의노트에서 실제로 겪은 결함이다.
+    const done = d.status === 'done' && !!d.file;
+    const ttl = document.createElement(done ? 'a' : 'span');
+    ttl.className = 'ttl' + (done ? '' : ' pending');
+    ttl.textContent = d.label || t.title || '발표';
+    if (done) ttl.href = 'slides/' + d.file;
+
+    const mins = document.createElement('span');
+    mins.className = 'mins';
+    mins.textContent = d.minutes ? d.minutes + '분' : '';
+
+    row.append(ttl, mins);
+
+    if (done) {
+      const stem = d.file.replace(/\.html$/, '');
+      const pdf = document.createElement('a');
+      pdf.className = 'pdf';
+      pdf.href = 'pdf/' + stem + '.pdf';
+      pdf.setAttribute('download', folder + (many ? '_' + stem : '') + '.pdf');
+      pdf.textContent = 'PDF';
+      row.append(pdf);
+      fetch(pdf.href, { method: 'HEAD' })
+        .then((r) => { if (!r.ok) pdf.hidden = true; })
+        .catch(() => { pdf.hidden = true; });
+    } else {
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = '준비 중';
+      row.append(tag);
+    }
+
+    li.append(row);
+    ul.append(li);
+  }
+
+  document.getElementById('foot').textContent = t.footer || '';
+})();
+</script>
+</body>
+</html>
