@@ -235,16 +235,28 @@ PDF는 `npx decktape`가 헤드리스 Chrome으로 만든다. 브라우저 인�
 
 ## 배포
 
-**아직 개통하지 않았다.** 계획은 아래와 같고, 강의노트(`../200_education`)에서 이미
-겪은 것을 그대로 반영한다.
+**GitHub Pages로 개통했다 (2026-09-06).** https://cbnu-uesa.github.io/presentations/
 
-| | 계획 |
+| | 지금 상태 |
 |---|---|
 | 저장소 | `cbnu-uesa/presentations` **공개** 저장소, 브랜치 둘 |
 | `main` | 원본 — 슬라이드 HTML·talk.json·문서 |
 | `gh-pages` | 배포본 — `build-site.sh` 산출물을 통째로 |
-| 호스팅 | Cloudflare Workers (`presentations.kks1104.workers.dev` 예정) |
-| 접근 | Cloudflare Access로 잠근다. 발표별 공개는 `talk.json`의 `public`으로 판단 |
+| 호스팅 | GitHub Pages (`gh-pages` 브랜치, 루트) |
+| 접근 | **잠겨 있지 않다. 누구나 볼 수 있다** |
+
+**지금은 사이트 전체가 공개다.** GitHub Free는 공개 저장소에서만 Pages가 되고,
+공개 저장소면 `main`의 슬라이드 원본도 github.com에서 그대로 읽힌다.
+사용자가 이 상태로 개통을 결정했다 (2026-09-06).
+
+그래서 **`talk.json`의 `public`은 지금 실효가 없다.** 새 발표를 올릴 때
+"이것이 오늘부터 전 세계에 공개돼도 되는가"를 반드시 먼저 묻는다.
+미공표 연구 결과나 제3자 제공 자료가 섞였다면 커밋하기 전에 판단을 받는다.
+
+**나중에 Cloudflare를 붙일 때 알아 둘 것.** Cloudflare Workers + Access는
+Workers 주소만 잠근다. github.io 주소는 그대로 열려 있으므로, 정말 닫으려면
+GitHub Pages를 끄거나 저장소를 비공개로 돌려야 한다 (비공개 저장소는 Free에서
+Pages가 안 되지만 Cloudflare Workers는 배포된다). 강의노트도 같은 상태다.
 
 `.gitignore`가 `*/private/`·`*/source/`·`*/pdf/`·`dist/`를 막는다. **이 네 줄을 지우지 않는다** —
 미공표 자료가 공개 저장소로 나가는 것을 막는 유일한 장치다.
@@ -262,8 +274,16 @@ find "$DIST" \( -path '*/source/*' -o -path '*/private/*' \) -print   # 아무�
 ls */assets/ex-* 2>/dev/null                                          # 외부 출처 전수 확인
 
 cd "$DIST" && rm -rf .git && git init -q -b gh-pages
+git config user.name "권규상" && git config user.email "kks1104@gmail.com"
 git add -A && git commit -q -m "배포 산출물 $(date +%F)"
 git push --force https://github.com/cbnu-uesa/presentations.git gh-pages
+```
+
+원본(`main`)도 잊지 말고 따로 커밋한다 — `gh-pages` 는 산출물만 담는 별개의 이력이다.
+푸시 뒤 Pages 빌드는 1~2분 걸린다.
+
+```bash
+gh api repos/cbnu-uesa/presentations/pages --jq '.status'   # built 가 되면 반영됐다
 ```
 
 ### 강의노트에서 이미 겪은 것 (같은 실수를 반복하지 않는다)
@@ -281,9 +301,16 @@ git push --force https://github.com/cbnu-uesa/presentations.git gh-pages
   헛도는 빌드가 실패로 쌓인다.
 - 한글 폴더명은 퍼센트 인코딩으로 잘 열린다. 별도 처리가 필요 없었다.
 - Free 계정은 **공개 저장소에서만** Pages가 된다.
-- **링크 검사는 배포 전에 로컬로 돌린다.** Access가 로그인 없는 요청을 403으로 막아
-  배포본을 그냥은 못 본다. 배포 뒤에는 브라우저로 한두 개만 눈으로 연다.
+- **링크 검사는 배포 전에 로컬로 돌린다.** 지금은 배포본도 열려 있어 주소를 넘겨 검사할 수
+  있지만, Cloudflare Access를 붙이면 로그인 없는 요청이 403으로 막힌다.
+- **`gh-pages` 를 강제 푸시하면 그 브랜치의 이력이 통째로 갈린다.** 산출물 전용이므로
+  의도된 것이다. 원본 이력은 `main` 에 있다.
+- 배포 직후 몇 분간은 CDN이 옛 응답을 준다. 새로 올린 파일이 404로 보이면 잠시 기다린다.
+- 헤드리스 브라우저로 배포본을 볼 때 PDF HEAD 요청이 `net::ERR_ABORTED` 로 찍힌다.
+  본문 없는 응답을 Chrome이 끊는 것이고 실제로는 200이다 — 다운로드 버튼은 정상이다.
+- github.io 루트에 `favicon.ico` 가 없어 404가 하나 남는다. 화면에는 영향이 없다.
 
-Access 정책은 강의노트와 같은 Zero Trust 계정(50명까지 무료)에 application을 하나 더 만든다.
-Include를 본인 이메일로 시작하고, 특정 발표를 청중에게 열 때 Identity provider를
-**One-time PIN**으로 두면 상대는 계정 없이 메일로 온 코드만 넣으면 된다.
+**나중에 Cloudflare Access를 붙일 때**는 강의노트와 같은 Zero Trust 계정(50명까지 무료)에
+application을 하나 더 만든다. Include를 본인 이메일로 시작하고, 특정 발표를 청중에게 열 때
+Identity provider를 **One-time PIN**으로 두면 상대는 계정 없이 메일로 온 코드만 넣으면 된다.
+다만 위에 적었듯 그것만으로는 github.io 주소가 닫히지 않는다.
