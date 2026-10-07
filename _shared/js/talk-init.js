@@ -153,9 +153,10 @@
 
   // ── Reveal ────────────────────────────────────────────────
   Reveal.initialize({
-    // design.md §2.1 — PPT의 pt와 CSS px를 1:1로 맞춘다
-    width: 960,
-    height: 540,
+    // design.md §2.1 — PPT의 pt와 CSS px를 1:1로 맞춘다.
+    // 1920×1080 아티팩트를 그대로 옮긴 덱은 .reveal 에 data-width/height 를 적는다 (talk.css 참조)
+    width: +deck.dataset.width || 960,
+    height: +deck.dataset.height || 540,
     margin: 0,
     minScale: 0.2,
     maxScale: 2.0,

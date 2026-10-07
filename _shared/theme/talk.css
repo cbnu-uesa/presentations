@@ -119,3 +119,79 @@
   gap: 18px 26px;
 }
 .reveal .logo-strip img { max-height: 54px; width: auto; }
+
+/* ─────────── 1920 캔버스 (claude.ai 슬라이드 아티팩트를 그대로 옮긴 덱) ───────────
+   아티팩트 슬라이드는 1920×1080 좌표에 모든 스타일을 인라인으로 적는다.
+   그 마크업을 고치지 않고 <section><div class="canvas" style="…원래 section 스타일…">
+   로 감싸 넣는다. section 에 직접 두지 않는 것은 Reveal 이 section 의 display 를
+   켜고 끄기 때문이다 — 인라인 display:flex 가 그것을 이긴다.
+   여기서는 강의 테마가 h1·h2·p 에 거는 위치·여백 규칙만 걷어낸다.
+   인라인 스타일이 늘 이기므로, 걷어낼 것은 인라인에 없는 속성뿐이다.
+
+   쓰는 법:  <div class="reveal canvas-1920" data-width="1920" data-height="1080"> */
+
+@font-face {
+  font-family: 'Pretendard Bold';
+  src: url('../fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+
+.reveal.canvas-1920 .slides > section { height: 1080px; }
+
+.reveal .canvas {
+  position: absolute; left: 0; top: 0;
+  width: 1920px; height: 1080px;
+  overflow: hidden;
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: #16181c;
+}
+.reveal .canvas,
+.reveal .canvas * { box-sizing: border-box; }
+
+/* cbnu.css 는 h2·표지 h1 을 960 좌표에 절대 배치하고 ::after 로 짧은 룰을 붙인다 */
+.reveal .canvas h1,
+.reveal .canvas h2,
+.reveal .canvas h3 {
+  position: static; left: auto; top: auto; right: auto;
+  margin: 0; padding: 0;
+  text-transform: none;
+  text-shadow: none;
+}
+.reveal .canvas h1::after,
+.reveal .canvas h2::after { content: none; }
+.reveal .canvas p { margin: 0; color: inherit; }
+.reveal .canvas b { font-weight: 700; }
+.reveal .canvas img {
+  display: block; margin: 0; max-width: none; max-height: none;
+  border: none; box-shadow: none; background: none;
+}
+/* 아티팩트처럼 SVG 는 viewBox 밖을 자른다 (브라우저 기본값). 풀면 라벨이 위 제목을 덮는다 */
+.reveal .canvas svg { display: block; }
+
+/* 표지·마무리의 발표자 줄 — talk-init.js 가 .speaker · .affil 로 채운다 */
+.reveal .canvas [data-talk-byline] .affil {
+  display: block; margin-top: 10px;
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-size: 28px; font-weight: 400; color: #4a4741;
+}
+
+/* 푸터 — 아티팩트의 푸터 줄을 그대로 옮긴다. 문구는 talk.json 의 footer */
+.reveal.canvas-1920 .deck-footer {
+  left: 112px; right: 112px; top: auto; bottom: 30px;
+  height: 44px; padding: 0;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-top: 2px solid #e2ded7;
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-size: 24px; font-weight: 400; line-height: 1.2;
+  letter-spacing: normal;
+  color: #8a867e;
+}
+/* 위 display:flex 가 cbnu.css 의 '마무리에는 푸터 없음'을 이기므로 다시 끈다 */
+.reveal.canvas-1920 section.s-closing .deck-footer { display: none; }
+.reveal.canvas-1920 .deck-footer .ft-text { padding-right: 0; }
+.reveal.canvas-1920 .deck-footer .ft-num {
+  position: static; font-size: 24px;
+}

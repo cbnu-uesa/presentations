@@ -1,0 +1,27 @@
+{
+  "id": "2026-10-08-knu-borrowed-size",
+  "title": "차용규모의 지리학: 개념, 경험적 증거, 향후 과제",
+  "titleEn": "The Geography of Borrowed Size: Concepts, Empirical Evidence and Challenges",
+
+  "event": "경북대학교 경제통상학부 특강",
+  "date": "2026. 10. 8.",
+
+  "kind": "특강",
+  "role": "발표",
+
+  "authors": ["권규상"],
+  "affiliation": "충북대학교 도시공학과",
+
+  "_공개": "전체 공개로 결정했다 (2026-10-07). 외부 출처 이미지(assets/ex-*)도 포함한다. private/공개-판단.md 참조.",
+  "public": true,
+
+  "label": "경북대학교 경제통상학부 특강",
+  "_footer": "아티팩트 원본의 푸터 문구를 그대로 쓴다.",
+  "footer": "차용규모의 지리학 · 경북대학교 경제통상학부 · 2026. 10. 8.",
+
+  "_원본": "claude.ai 슬라이드 아티팩트 https://claude.ai/artifact/Bu6u9iVXVfAHdsQERN5Hgf 를 1920×1080 그대로 옮겼다 (2026-10-07).",
+
+  "decks": [
+    { "no": 1, "label": "본 발표 (60분)", "file": "deck.html", "minutes": 60, "status": "done" }
+  ]
+}
