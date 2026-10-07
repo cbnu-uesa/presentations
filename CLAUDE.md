@@ -87,6 +87,7 @@ tokens.css → cbnu.css → components.css → print.css → talk.css
 ├── _templates/            talk.html · talk.json · talk-index.html
 ├── _scripts/              serve.sh · build-pdf.sh · build-site.sh
 │                          check-figures.sh · check-links.sh · sync-shared.sh
+│                          import-artifact.py (슬라이드 아티팩트 이식)
 └── 2026-09-05_충북대학교_논문작성법과연구윤리/     ← 발표 하나
     ├── talk.json          행사·날짜·발표자·푸터·덱 목록의 유일한 원천
     ├── index.html         이 발표 안내 (_templates/talk-index.html 복사)
@@ -196,6 +197,33 @@ tokens.css → cbnu.css → components.css → print.css → talk.css
 
 ---
 
+## 슬라이드 아티팩트 이식 워크플로
+
+claude.ai 슬라이드 아티팩트로 만든 발표를 웹에 올릴 때의 순서다.
+`2026-10-08_경북대학교경제통상학부_차용규모의지리학`이 첫 사례다 (2026-10-07).
+
+이렇게 옮긴 덱은 design.md의 960×540 유형을 쓰지 않는다. 아티팩트의 1920×1080 화면을
+그대로 옮기고, 원본은 아티팩트 쪽이다. **`deck.html`을 손으로 고치지 않는다.**
+다시 옮기면 손으로 고친 것이 사라진다. 고칠 것은 아티팩트에서 고치고 다시 옮긴다.
+
+1. **Claude가 Artifact 도구로 아티팩트를 받는다.** 셸로는 받을 수 없다.
+   `project/deck.json`과 `project/slides/*.html`은 `read`의 `paths`로 한 번에 받는다.
+   이미지는 `list`(`scope: "assets"`)로 id를 보고 `read`의 `path`로 하나씩 받는다.
+   여러 id를 `paths`로 한꺼번에 넘기면 실패한다. 받는 곳은 scratchpad다.
+2. 새 이미지가 있으면 `talk.json`의 `artifact.assets` 표에 `id → 파일 이름`을 더한다.
+   외부 출처면 `ex-`를 붙인다.
+3. `python3 _scripts/import-artifact.py <받은 폴더> <발표폴더>`
+4. `_scripts/build-pdf.sh <발표폴더>/slides/deck.html` 후 PDF를 쪽마다 눈으로 본다.
+   `check-figures.sh`는 960 덱용이라 이 덱에는 맞지 않는다.
+5. 배포 절차를 따른다.
+
+새 발표를 처음 이식할 때는 `talk.json`(`artifact.url` 포함)과 `index.html`을 먼저 만들고
+루트 `TALKS`에 등록한다. 행사명·날짜·발표자는 표지에서 `talk.json` 값으로 바뀌므로
+`event`·`authors[0]`·`affiliation`을 아티팩트 표지 문구와 똑같이 적는다. 날짜는
+"YYYY년 M월 D일" 꼴을 찾아 바꾼다.
+
+---
+
 ## 명령어
 
 ```bash
@@ -216,6 +244,9 @@ _scripts/check-links.sh                       # 배포 전에 로컬로 돌린�
 # 배포용 정적 사이트 생성 (화이트리스트 복사)
 _scripts/build-site.sh                        # 전체 (Access 로 잠긴 사이트용)
 PUBLIC_ONLY=1 _scripts/build-site.sh          # public: true 인 발표만
+
+# 슬라이드 아티팩트 → deck.html (받은 폴더는 Claude 가 Artifact 도구로 만든다)
+python3 _scripts/import-artifact.py <받은 폴더> 2026-10-08_.../
 
 # 강의노트의 테마·폰트·vendor 갱신분 끌어오기
 _scripts/sync-shared.sh                       # 무엇이 달라지는지만 본다

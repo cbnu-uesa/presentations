@@ -19,7 +19,27 @@
   "_footer": "아티팩트 원본의 푸터 문구를 그대로 쓴다.",
   "footer": "차용규모의 지리학 · 경북대학교 경제통상학부 · 2026. 10. 8.",
 
-  "_원본": "claude.ai 슬라이드 아티팩트 https://claude.ai/artifact/Bu6u9iVXVfAHdsQERN5Hgf 를 1920×1080 그대로 옮겼다 (2026-10-07).",
+  "_artifact": "슬라이드는 이 아티팩트를 _scripts/import-artifact.py 로 옮긴 것이다. 고칠 것은 아티팩트에서 고치고 다시 옮긴다. assets 는 아티팩트 이미지 id → assets/ 파일 이름표다.",
+  "artifact": {
+    "url": "https://claude.ai/artifact/Bu6u9iVXVfAHdsQERN5Hgf",
+    "assets": {
+      "1a6a2453e744ac8a425d851162ceddef": "ex-alonso-portrait.jpg",
+      "e6c76f98184e478e2affef69c6be4b34": "ex-alonso-1973-p1.png",
+      "fe60055bd40e365ced5d9841aa37a342": "kwon-sohn-2026-mech-1.png",
+      "0b794f8bbd1364eefcdf74904cf43d81": "kwon-sohn-2026-mech-2.png",
+      "c3154d417229465fcc15bc0b59899a96": "kwon-sohn-2026-mech-3.png",
+      "efdef8efa0cf7d53aba209868245a675": "kwon-sohn-2026-mech-4.png",
+      "dbf3aafe9e7a42818faf5700b5b41fe1": "ex-hyundai-outlet-daejeon.jpg",
+      "7c28b7dce62a72fa4b97e8deda221166": "ex-shinsegae-art-science.jpg",
+      "4b02fe0706b375822f393e27ad0a812f": "ex-galleria-timeworld.jpg",
+      "0e96cd713ff4895644dd5896fcc9e190": "ex-lotte-daejeon.jpg",
+      "e506e1dfe79158563f31b7440140ebcc": "ex-say-department-store.jpg",
+      "91c0d143836e1d0136469778b1748000": "ex-sejong-government-complex.jpg",
+      "7052df95826c227c226b88f06e3b8daa": "ex-sk-hynix.png",
+      "541f08751329d667169bf245900e81ad": "ex-cbnu.jpg",
+      "a48f486bdb76359fd921e5d36fa4c0e9": "ex-sungsimdang.png"
+    }
+  },
 
   "decks": [
     { "no": 1, "label": "본 발표 (60분)", "file": "deck.html", "minutes": 60, "status": "done" }
