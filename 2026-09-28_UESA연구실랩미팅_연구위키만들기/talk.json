@@ -1,0 +1,31 @@
+{
+  "id": "2026-09-28-uesa-research-wiki",
+  "title": "연구위키 만들기",
+
+  "event": "도시경제 및 공간분석연구실 랩미팅",
+  "date": "2026. 9. 28.",
+
+  "kind": "워크숍",
+  "role": "발표",
+
+  "authors": ["권규상"],
+  "affiliation": "충북대학교 도시공학과",
+
+  "_공개": "전체 공개로 결정했다 (2026-10-08, 차용규모의 지리학과 같은 방식으로 올리라는 요청). 외부 이미지 없음.",
+  "public": true,
+
+  "label": "도시경제 및 공간분석연구실 랩미팅",
+  "_footer": "아티팩트 원본의 푸터 문구를 그대로 쓴다. import-artifact.py 가 이 문구로 푸터를 찾아 지운다.",
+  "footer": "도시경제 및 공간분석연구실 랩미팅 · 2026-09-28",
+
+  "_artifact": "슬라이드는 이 아티팩트를 _scripts/import-artifact.py 로 옮긴 것이다. 고칠 것은 아티팩트에서 고치고 다시 옮긴다.",
+  "artifact": {
+    "url": "https://claude.ai/artifact/79PW1jPKYyDqEriCLHFJLi",
+    "assets": {}
+  },
+
+  "_minutes": "발표 시간을 확인하지 못해 20분으로 적었다.",
+  "decks": [
+    { "no": 1, "label": "본 발표", "file": "deck.html", "minutes": 20, "status": "done" }
+  ]
+}

@@ -1,0 +1,214 @@
+/* 발표 전용 층 — design.md §12
+ *
+ * 강의 테마 넷(tokens · cbnu · components · print) 다음에 읽는다.
+ * 그 넷은 200_education 에서 그대로 복사해 온 것이고 여기서 고치지 않는다.
+ * 발표에만 필요한 것을 이 파일 하나에 모아, sync-shared.sh 로 넷을 언제든
+ * 덮어쓸 수 있게 한다.
+ *
+ * 선택자에는 모두 .reveal 을 붙인다. 앞의 넷과 가중치가 같으면 순서로 이기지만,
+ * 강의 규칙이 .reveal 로 시작하므로 여기서도 같은 층위를 유지한다.
+ */
+
+/* ─────────── 표지 ───────────
+   강의 표지는 [학기 라벨 → 제목 → 날짜] 셋이다.
+   발표 표지는 [행사명 → 제목 → 발표자·소속 → 날짜·장소] 넷이라 한 줄이 더 든다.
+   제목 아래 짧은 룰(h1::after)이 218 + 두 줄 + 16 ≈ 341 에 오므로 그 밑에 둘을 쌓는다. */
+
+.reveal section.s-cover .cover-event {
+  position: absolute; left: var(--gutter-l); top: 196px;
+  margin: 0;
+  font-size: var(--fs-cover-label);
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--brand-crimson);
+}
+
+.reveal section.s-cover .cover-byline {
+  position: absolute; left: var(--gutter-l); right: 200px; top: 358px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+/* 공저자가 여럿이면 발표자만 굵게 둔다 — 누가 말하는지가 표지의 정보다 */
+.reveal section.s-cover .cover-byline .speaker { font-weight: 700; color: var(--ink); }
+.reveal section.s-cover .cover-byline .affil {
+  display: block; margin-top: 2px;
+  font-size: 13px; font-weight: 400; color: var(--muted);
+}
+
+/* 날짜 줄을 발표자 아래로 내린다 (강의 표지는 352px) */
+.reveal section.s-cover .cover-date { top: 414px; }
+
+/* ─────────── 표지 로고 ───────────
+   강의는 학교 마크 하나다. 학회·자문 발표는 주최 기관 마크를 함께 요구할 때가 있다.
+   .logo-row 를 쓰면 오른쪽 끝을 기준으로 왼쪽으로 쌓인다. */
+
+.reveal section.s-cover .logo-row {
+  position: absolute; right: var(--gutter-r); top: 40px;
+  display: flex; align-items: center; gap: 14px;
+}
+.reveal section.s-cover .logo-row img {
+  height: 46px; width: auto;
+  margin: 0;
+  background: none; border: none; box-shadow: none;
+}
+/* .logo-row 안에 들어간 학교 마크는 절대배치를 풀어야 한다 (cbnu.css 가 좌표를 준다) */
+.reveal section.s-cover .logo-row .cover-logo {
+  position: static; left: auto; top: auto;
+  width: auto; height: 46px;
+}
+
+/* ─────────── 푸터 ───────────
+   문구는 talk.json 의 footer 하나에서 온다 ("행사명 / 날짜 / 발표자").
+   강의 푸터보다 길어지기 쉬워 쪽번호 자리를 비워 두고 넘치면 자른다. */
+
+.reveal .deck-footer .ft-text {
+  display: block;
+  padding-right: 46px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─────────── 감사 슬라이드 ───────────
+   강의의 .s-closing(Q & A)을 발표에서도 쓰되, 연락처 한 줄을 받는다. */
+
+.reveal section.s-closing .contact {
+  margin-top: 22px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+
+/* ─────────── 그림 (사진 · 화면캡처 · 로고) ───────────
+   발표는 강의노트보다 외부 그림을 많이 쓴다. Reveal 기본값은 모든 section img 에
+   1px #666 테두리를 두르는데(reveal.css), 로고에는 틀리고 화면캡처에는 맞다.
+   용도로 갈라 두고 슬라이드에서 골라 쓴다. */
+
+.reveal .body figure { margin: 0; }
+.reveal .body figcaption {
+  margin-top: 5px;
+  font-size: var(--fs-caption);
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* 화면캡처·문헌캡처 — 지면 위의 인용이므로 얇은 괘선으로 가둔다 */
+.reveal img.im-shot {
+  display: block; max-width: 100%; margin: 0;
+  border: 1px solid var(--rule); background: #FFF; box-shadow: none;
+}
+/* 사진 — 테두리 없이 그대로 */
+.reveal img.im-photo {
+  display: block; max-width: 100%; margin: 0;
+  border: none; background: none; box-shadow: none;
+}
+/* 로고·마크 — 테두리도 배경도 없다 */
+.reveal img.im-logo {
+  display: block; max-width: 100%; margin: 0;
+  border: none; background: none; box-shadow: none;
+}
+
+/* 로고를 가로로 늘어놓는 줄 (서지관리 프로그램, 생성형 AI 등) */
+.reveal .logo-strip {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 18px 26px;
+}
+.reveal .logo-strip img { max-height: 54px; width: auto; }
+
+/* ─────────── 1920 캔버스 (claude.ai 슬라이드 아티팩트를 그대로 옮긴 덱) ───────────
+   아티팩트 슬라이드는 1920×1080 좌표에 모든 스타일을 인라인으로 적는다.
+   그 마크업을 고치지 않고 <section><div class="canvas" style="…원래 section 스타일…">
+   로 감싸 넣는다. section 에 직접 두지 않는 것은 Reveal 이 section 의 display 를
+   켜고 끄기 때문이다 — 인라인 display:flex 가 그것을 이긴다.
+   여기서는 강의 테마가 h1·h2·p 에 거는 위치·여백 규칙만 걷어낸다.
+   인라인 스타일이 늘 이기므로, 걷어낼 것은 인라인에 없는 속성뿐이다.
+
+   쓰는 법:  <div class="reveal canvas-1920" data-width="1920" data-height="1080"> */
+
+/* 아티팩트는 굵기마다 글꼴 이름을 따로 짓는다. 덱마다 이름이 달라 여기 모은다.
+   파일은 _shared/fonts 의 것과 같다 (sha256 으로 대조함, 2026-10-08). */
+@font-face {
+  font-family: 'Pretendard Bold';
+  src: url('../fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: 'Pretendard Bd';
+  src: url('../fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: 'Pretendard Md';
+  src: url('../fonts/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: 'Bookk Myungjo';
+  src: url('../fonts/BookkMyungjo-Bold.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+
+.reveal.canvas-1920 .slides > section { height: 1080px; }
+
+.reveal .canvas {
+  position: absolute; left: 0; top: 0;
+  width: 1920px; height: 1080px;
+  overflow: hidden;
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: normal;
+  color: #16181c;
+}
+.reveal .canvas,
+.reveal .canvas * { box-sizing: border-box; }
+
+/* cbnu.css 는 h2·표지 h1 을 960 좌표에 절대 배치하고 ::after 로 짧은 룰을 붙인다 */
+.reveal .canvas h1,
+.reveal .canvas h2,
+.reveal .canvas h3 {
+  position: static; left: auto; top: auto; right: auto;
+  margin: 0; padding: 0;
+  text-transform: none;
+  text-shadow: none;
+}
+.reveal .canvas h1::after,
+.reveal .canvas h2::after { content: none; }
+.reveal .canvas p { margin: 0; color: inherit; }
+.reveal .canvas b { font-weight: 700; }
+.reveal .canvas img {
+  display: block; margin: 0; max-width: none; max-height: none;
+  border: none; box-shadow: none; background: none;
+}
+/* 아티팩트처럼 SVG 는 viewBox 밖을 자른다 (브라우저 기본값). 풀면 라벨이 위 제목을 덮는다 */
+.reveal .canvas svg { display: block; }
+
+/* 표지·마무리의 발표자 줄 — talk-init.js 가 .speaker · .affil 로 채운다 */
+.reveal .canvas [data-talk-byline] .affil {
+  display: block; margin-top: 10px;
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-size: 28px; font-weight: 400; color: #4a4741;
+}
+
+/* 푸터 — 아티팩트의 푸터 줄을 그대로 옮긴다. 문구는 talk.json 의 footer */
+.reveal.canvas-1920 .deck-footer {
+  left: 112px; right: 112px; top: auto; bottom: 30px;
+  height: 44px; padding: 0;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-top: 2px solid #e2ded7;
+  font-family: 'Pretendard', Arial, sans-serif;
+  font-size: 24px; font-weight: 400; line-height: 1.2;
+  letter-spacing: normal;
+  color: #8a867e;
+}
+/* 위 display:flex 가 cbnu.css 의 '마무리에는 푸터 없음'을 이기므로 다시 끈다 */
+.reveal.canvas-1920 section.s-closing .deck-footer { display: none; }
+.reveal.canvas-1920 .deck-footer .ft-text { padding-right: 0; }
+.reveal.canvas-1920 .deck-footer .ft-num {
+  position: static; font-size: 24px;
+}

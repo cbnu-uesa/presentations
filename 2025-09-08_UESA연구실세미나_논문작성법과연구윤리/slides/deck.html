@@ -1,0 +1,1233 @@
+<!doctype html>
+<!--
+  논문작성법과 연구윤리 — UESA 연구실 세미나 (2025-09-08)
+
+  원본은 source/논문작성법과 연구윤리.pptx (48쪽). 구성안과 원본 대비표는
+  ../private/구성안.md 에 있다. 원본 p4~7 과 p13~14 는 누적 공개로 복제된
+  쪽이라 각각 한 장으로 합쳤다. 그 밖에는 1:1 이다.
+
+  행사명·날짜·발표자·푸터는 ../talk.json 이 채운다. 여기 적지 않는다.
+  절 이름("1. 논문이란?")은 슬라이드마다 다르므로 kicker 를 직접 적는다.
+-->
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>논문작성법과 연구윤리</title>
+
+  <link rel="stylesheet" href="../../_shared/vendor/reveal/reset.css">
+  <link rel="stylesheet" href="../../_shared/vendor/reveal/reveal.css">
+  <link rel="stylesheet" href="../../_shared/theme/tokens.css">
+  <link rel="stylesheet" href="../../_shared/theme/cbnu.css">
+  <link rel="stylesheet" href="../../_shared/theme/components.css">
+  <link rel="stylesheet" href="../../_shared/theme/print.css">
+  <link rel="stylesheet" href="../../_shared/theme/talk.css">
+
+  <style>
+    /* 이 덱에서만 쓰는 것 — 테마로 올릴 만큼 일반적이지 않다 */
+
+    /* 원문 대조 (표절 사례) — 의심원문 / 선행연구 원문을 나란히 */
+    .quote-pair { display: flex; gap: 18px; align-items: stretch; }
+    .quote-pair > div { flex: 1 1 0; }
+    .quote-box {
+      border: 1px solid var(--rule); padding: 9px 11px;
+      font-size: 12.5px; line-height: 1.5; color: var(--ink-2);
+      height: 100%; box-sizing: border-box;
+    }
+    .quote-label { font-size: 12px; font-weight: 700; color: var(--ink); margin: 0 0 5px; }
+    .quote-src   { display: block; margin-top: 7px; font-size: 10.5px; color: var(--muted); }
+
+    /* 인용 문단 예시 (선행연구 검토 쓰기) */
+    .para-example {
+      border-left: 3px solid var(--rule); padding: 2px 0 2px 14px;
+      font-size: 13px; line-height: 1.6; color: var(--ink-2);
+    }
+
+    /* 오해 문답 — 질문 굵게, 답은 크림슨 화살표로 시작 */
+    .qa-list > li { margin-bottom: 11px; }
+    .qa-list .ans { display: block; margin-top: 2px; color: var(--brand-crimson); font-weight: 500; }
+
+    /* 좁은 보조 목록 (검색 도구 등) */
+    .aside-list { font-size: 13px; }
+  </style>
+
+  <script src="../../_shared/js/charts.js"></script>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+<!-- ══════════ 표지 (원본 p1) ══════════ -->
+<section class="s-cover">
+  <div class="logo-row">
+    <img class="cover-logo" src="../../_shared/img/cbnu-logo.jpg" alt="충북대학교">
+  </div>
+  <p class="cover-event" data-talk-event>&nbsp;</p>
+  <h1>논문작성법과 연구윤리</h1>
+  <p class="cover-byline" data-talk-byline>&nbsp;</p>
+  <p class="cover-date" data-talk-date>&nbsp;</p>
+</section>
+
+<!-- ══════════ 1. 논문이란? ══════════ -->
+
+<!-- 원본 p2 -->
+<section>
+  <p class="kicker">1. 논문이란?</p>
+  <h2>논문<span class="en">(research article)</span></h2>
+  <div class="body stack">
+    <ul>
+      <li>증거와 논리를 기반으로</li>
+      <li>기존 학술적 논의에 기여할</li>
+      <li>새로운 결과/주장을 제시하는 글</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p3 -->
+<section>
+  <p class="kicker">1. 논문이란?</p>
+  <h2>자연과학/공학 논문과 사회과학 논문</h2>
+  <div class="body stack">
+    <ol style="padding-left:20px; margin:0 0 14px;">
+      <li>자연과학/공학: 자연법칙의 발견(uncover the universal law) 혹은 기술진보(technological progress)</li>
+      <li>사회과학: 사회현상과 인간행태의 해석과 이해(interpret and understand the society and human behavior)</li>
+    </ol>
+    <svg class="fig" id="fig-spectrum" viewBox="0 0 840 190" role="img">
+      <title>도시공학의 하위 분야를 공학적 성격과 사회과학적 성격의 정도에 따라 늘어놓은 띠</title>
+    </svg>
+  </div>
+</section>
+
+<!-- 원본 p4~7 (누적 공개로 복제된 네 쪽을 한 장으로) -->
+<section>
+  <p class="kicker">1. 논문이란?</p>
+  <h2>논문이 갖춰야 할 요건</h2>
+  <div class="body tight">
+    <div class="cols fig-left">
+      <div class="col-l">
+        <p class="sub" style="margin-bottom:2px;">1. 연구 질문이 기존 학술적 논의에 의미 있게 기여하는가?</p>
+        <p class="fragment hl" data-fragment-index="1"
+           style="margin:0 0 4px; text-align:right; font-size:13px;">— Desk reject의 결정</p>
+        <ul>
+          <li>의미 있는(meaningful): 학술적(academic)으로 중요한가?<br>
+            <span class="caption">특정 현상을 설명하기 위해 정립된 이론 혹은 논의의 틀</span></li>
+          <li>기여(contribution): 새로움(novelty)을 제공하는가?</li>
+        </ul>
+        <p class="sub" style="margin:14px 0 2px;">2. 연구 질문에 답하기 위한 증거가 충분한가?</p>
+        <p class="fragment hl" data-fragment-index="1"
+           style="margin:0 0 4px; text-align:right; font-size:13px;">— 최종 Accept의 결정</p>
+        <ul>
+          <li>논리적 비약 없는</li>
+          <li>명백한 증거</li>
+        </ul>
+      </div>
+      <div class="col-r">
+        <div style="display:flex; gap:14px; align-items:flex-end;">
+          <figure class="fragment" data-fragment-index="2" style="flex:1 1 0;">
+            <img class="im-photo" src="../assets/ex-giants.jpg" alt="거인의 어깨 위에 올라선 사람">
+            <figcaption>On the shoulder of giants</figcaption>
+          </figure>
+          <figure class="fragment" data-fragment-index="3" style="flex:0 0 40%;">
+            <img class="im-photo" src="../assets/ex-stonetower.jpg" alt="들판에 쌓인 돌탑">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 원본 p8 -->
+<section>
+  <p class="kicker">1. 논문이란?</p>
+  <h2>기여의 정도</h2>
+  <div class="body">
+    <div class="cols fig-left">
+      <div class="col-l">
+        <svg class="fig" id="fig-contrib" viewBox="0 0 440 280" role="img">
+          <title>기여의 정도를 높은 기여와 낮은 기여 사이의 척도로 나타낸 그림</title>
+        </svg>
+      </div>
+      <div class="col-r">
+        <img class="im-photo" src="../assets/ex-stonetower.jpg" alt="들판에 쌓인 돌탑"
+             style="max-height:236px; width:auto; margin:0 auto;">
+      </div>
+    </div>
+    <p class="derive" style="text-align:center; margin-top:8px;">
+      기여도가 높고 낮은 것의 차이가 있을 뿐, 기여가 없는 내용은 없다.<br>
+      하지만 더 큰 기여를 위해 노력해야 한다.</p>
+  </div>
+</section>
+
+<!-- ══════════ 2. 연구주제 찾기와 질문 만들기 ══════════ -->
+
+<!-- 원본 p9 -->
+<section>
+  <p class="kicker">2. 연구주제 찾기와 질문 만들기</p>
+  <h2>연구주제는 어떻게 찾을까?</h2>
+  <div class="body stack">
+    <ul>
+      <li>본인이 관심있는 부분에서 연구주제를 찾아라.</li>
+      <li>연구주제는 대주제, 세부주제, 세세부주제 등으로 구체화시킬 수 있다.
+        <ul style="margin-top:6px;">
+          <li>대주제: 젠트리피케이션</li>
+          <li>세부주제: 젠트리피케이션의 작동방식</li>
+          <li>세세부주제: 젠트리피케이션에서 국가의 역할</li>
+        </ul>
+      </li>
+      <li>연구주제는 가급적이면 최대한 구체화하자.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p10 -->
+<section>
+  <p class="kicker">2. 연구주제 찾기와 질문 만들기</p>
+  <h2>연구주제는 어떻게 찾을까?</h2>
+  <div class="body stack">
+    <svg class="fig" id="fig-flow" viewBox="0 0 520 320" role="img"
+         style="margin:0 auto; max-height:330px;">
+      <title>사례에서 이론검토를 거쳐 연구공백을 발견하고 연구질문을 구체화하는 흐름</title>
+    </svg>
+  </div>
+</section>
+
+<!-- 원본 p11 -->
+<section>
+  <p class="kicker">2. 연구주제 찾기와 질문 만들기</p>
+  <h2>연구질문 만들기</h2>
+  <div class="body tight">
+    <p class="emph">본인이 발견한 연구공백을 육하원칙(5W1H) 중 하나로 제시</p>
+    <ul>
+      <li>무엇(what): 예. 아파트 가격에 무슨 요소가 영향을 미쳤는가?</li>
+      <li>누가(who): 예. 아파트 가격에 누가 큰 영향을 미쳤는가?</li>
+      <li>어떻게(how): 예. 아파트 거래는 어떻게 분포하는가? 얼마나 많이(how many/much) 발생하는가?</li>
+      <li>언제(when): 예. 아파트 가격에 미치는 특정 요소는 언제 영향력이 극대화되는가?</li>
+      <li>어디서(where): 예. 아파트 거래는 어디서 거래량이 군집되어 있는가?</li>
+      <li>왜(why): 예. 아파트 거래가 강남에 집중되는 현상은 왜 발생하는가?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p12 -->
+<section>
+  <p class="kicker">2. 연구주제 찾기와 질문 만들기</p>
+  <h2>연구가설 만들기</h2>
+  <div class="body stack">
+    <p class="lead t-define">본인의 연구질문에 대한 답을 “미리” 내려 검증 가능한 문제(O/X 문제)로 바꾸는 것이다.</p>
+    <ul style="margin-top:18px;">
+      <li>연구질문: 접근성은 아파트 가격에 영향을 미치는가?</li>
+      <li>연구가설
+        <ul style="margin-top:6px;">
+          <li>(H0: 귀무가설) 접근성은 아파트 가격에 영향을 미치지 않을 것이다</li>
+          <li>(H1: 대립가설) 접근성은 아파트 가격에 영향을 미칠 것이다.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ 3. 선행연구 검토하기 ══════════ -->
+
+<!-- 원본 p13~14 (Google Scholar 화면 한 쪽 + 정의 한 쪽을 한 장으로) -->
+<section>
+  <p class="kicker">3. 선행연구(literature) 검토하기</p>
+  <h2>선행연구<span class="en">(existing literature)</span>란 무엇인가?</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="col-l">
+        <img class="im-shot" src="../assets/ex-scholar.png" alt="Google Scholar 검색 화면">
+      </div>
+      <div class="col-r fragment" data-fragment-index="1">
+        <p class="emph">선행연구는 “학계”에 “발표”된 “연구결과물”을 의미한다.</p>
+        <ul>
+          <li>학계: 학술적으로 논의된 것</li>
+          <li>발표: 출판된 것과 출판되지 않은 것
+            <ul style="margin-top:5px;">
+              <li>출판된 것: 학술지, 보고서, 단행본 등</li>
+              <li>출판되지 않은 것: 학술대회 발표집 등</li>
+            </ul>
+          </li>
+          <li>연구결과물: 단순 데이터가 아닌 정리된 내용</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 원본 p15 -->
+<section class="s-split wide-left">
+  <p class="kicker">3. 선행연구(literature) 검토하기</p>
+  <h2>선행연구는 어떻게 찾을까?</h2>
+  <div class="body tight">
+    <div class="col-l">
+      <ol style="padding-left:20px; margin:0;">
+        <li>본인이 관심 갖는 주제의 “키워드”를 도출한다.</li>
+        <li>키워드를 구글 스칼라 등에 입력하여 논문을 찾는다.</li>
+        <li>제목, 저널명, 인용빈도, 저자명성 등을 고려해서 논문을 선택한다.</li>
+        <li>해당 논문을 읽고 본인의 연구주제와 맞을 경우 파도타기한다.
+          <ul style="margin-top:5px;">
+            <li>해당 논문의 레퍼런스(reference)를 본다.</li>
+            <li>해당 논문을 인용한 논문(cited by)를 본다.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div class="col-r">
+      <ul class="aside-list">
+        <li>구글 스칼라, researchgate 등</li>
+        <li>국내논문: KISS, DBPIA, eArticle 등</li>
+        <li>해외논문: 각 저널 출판사 웹사이트, WOS 등</li>
+        <li>GPT 계열: consensus, scite_ai</li>
+      </ul>
+      <img class="im-shot" src="../assets/ex-scholar-result.png"
+           alt="구글 스칼라 검색결과 한 건" style="margin-top:10px;">
+    </div>
+  </div>
+</section>
+
+<!-- 원본 p16 -->
+<section>
+  <p class="kicker">3. 선행연구(literature) 검토하기</p>
+  <h2>좋은 선행연구의 기준은 무엇인가?</h2>
+  <div class="body stack">
+    <ul>
+      <li>특정 논문이 좋은 논문인지는 본인이 판단해야 한다.</li>
+      <li>다만 간접적으로 다음과 같이 저널을 기준으로 판단한다.
+        <ul style="margin-top:6px;">
+          <li>Indexing 확인: KCI 등재지 혹은 SCI급 저널에 실린 논문인가?</li>
+          <li>대표성 확인: 해당 분야 대표학회(예. 국토학회) 혹은 주요 출판사(Elsevier, Sage,
+              Taylor &amp; Francis, Wiley 등)에서 발간된 저널인가?</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="derive" style="margin-top:22px;">가급적 좋은 저널에 실린 논문을 (많이) 읽어라.</p>
+  </div>
+</section>
+
+<!-- 원본 p17 -->
+<section>
+  <p class="kicker">3. 선행연구(literature) 검토하기</p>
+  <h2>선행연구는 어떻게 읽어야 할까?</h2>
+  <div class="body stack">
+    <p class="emph">초보자라면 다음의 방법으로 읽어봅시다.</p>
+    <ol style="padding-left:20px; margin-top:8px;">
+      <li>초록을 읽고 대강의 내용을 훑어가며 읽는다. 특히 서론과 토론, 결론에 집중한다.</li>
+      <li>대강의 내용을 파악한 상태로 분석방법, 결과 등을 자세히 읽는다.
+          읽는 과정에서 모르는 내용은 체크해둔다.</li>
+      <li>체크해 둔 내용을 다른 문헌 등을 통해서 확인해본다.</li>
+      <li>읽은 내용을 간단하게 정리해본다.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 원본 p18 -->
+<section class="s-split wide-left">
+  <p class="kicker">3. 선행연구(literature) 검토하기</p>
+  <h2>선행연구는 어떻게 정리하면 좋을까?</h2>
+  <div class="body tight">
+    <div class="col-l">
+      <p class="emph">서지정리 프로그램(endnote, Zotero, refworks 등)을 활용하여 목록을 정리한다.</p>
+      <p class="emph" style="margin-top:12px;">각 논문별 내용은 다음의 기준을 참고하여 나름대로 정리해본다.</p>
+      <ul>
+        <li>서지정보(저자, 제목, 저널명, 출판연도 등)</li>
+        <li>연구 필요성과 목적</li>
+        <li>핵심방법론: 연구지역, 변수(종속/통제/설명), 방법론, 결과</li>
+        <li>연구주요내용</li>
+        <li>주요 인용할 만한 문구</li>
+        <li>본인이 생각하는 이 연구의 기여와 독창성</li>
+        <li>본인이 생각하는 이 연구의 한계</li>
+        <li>논문을 읽으면서 들었던 의문점</li>
+      </ul>
+    </div>
+    <div class="col-r">
+      <div class="logo-strip" style="flex-direction:column; align-items:flex-start;">
+        <img class="im-logo" src="../assets/ex-endnote.png" alt="EndNote">
+        <img class="im-logo" src="../assets/ex-zotero.jpg" alt="Zotero">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 원본 p19 -->
+<section>
+  <p class="kicker">3. 선행연구(literature) 검토하기</p>
+  <h2>선행연구를 검토해서 무엇을 뽑아내야 할까?</h2>
+  <div class="body stack">
+    <ol style="padding-left:20px; margin:0;">
+      <li>Positioning: 기존 학술적 논의에서 본인 연구가 다루고 있는 부분이 어디인지를 파악
+        <p class="derive">→ 대주제, 세부주제, 세세부주제 혹은 그 하위단위에서 내 연구는 어디에 있는가?</p></li>
+      <li>Finding research gap: 기존 논의에서 부족한 점을 파악
+        <p class="derive">→ 내 연구는 어떤 측면에서 새로운가? 어떤 점을 기여할 수 있는가?</p></li>
+      <li>New theoretical foundation: 기존 연구공백을 메우기 위한 새로운 단서의 파악
+        <p class="derive">→ 타 분야 이론의 결합, 관점의 변화, 새로운 데이터나 방법론의 활용</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════ 4. 논문 쓰기 ══════════ -->
+
+<!-- 원본 p20 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>핵심내용</h2>
+  <div class="body stack">
+    <p class="emph">일반적인 과학적 논문 쓰기에서</p>
+    <ol style="padding-left:20px; margin-top:14px;">
+      <li>논문은 약속된 포맷(format)에 맞게 정보를 전달하는 매우 규격화된 글이다.<br>
+        <span class="caption">(예. IMRAD – Introduction, Materials, Results And Discussion)</span></li>
+      <li style="margin-top:16px;">논문에서 문장과 문단의 순서는 대체로 정해져 있다.</li>
+      <li style="margin-top:16px;">논문에서 문장의 형태는 대체로 정해져 있다.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 원본 p21 -->
+<section class="s-split wide-left">
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>서론 쓰기</h2>
+  <div class="body tight">
+    <div class="col-l">
+      <p class="emph">서론은 다음과 같이 연구질문 구체화 단계를 그대로 문단으로 옮기는 것이다.</p>
+      <ul>
+        <li>1문단: 연구주제에 대한 간략한 동향(연구동향/실제 환경) 및 성과</li>
+        <li>2문단: 기존 연구가 최근 직면한 한계와 내 연구 세부주제의 중요성</li>
+        <li>3문단: 연구목적, 연구방법 및 요약결론, 연구의 기여 제시</li>
+        <li>4문단: 이후 논문의 구성</li>
+      </ul>
+      <ul style="margin-top:12px;">
+        <li>각 문단은 대략 4~5문장으로 쓰되 필요에 따라 늘린다.</li>
+        <li>선행연구 검토(literature review)가 별도로 없다면 1, 2문단을 각각 최소 2~3문단
+            이상으로 늘려야 한다. (즉, 총 4~6문단 이상)</li>
+      </ul>
+    </div>
+    <div class="col-r">
+      <p class="caption" style="margin:0 0 4px;">사례</p>
+      <svg class="fig" id="fig-flow2" viewBox="0 0 520 320" role="img" style="max-height:290px;">
+        <title>사례에서 이론검토를 거쳐 연구공백을 발견하고 연구질문을 구체화하는 흐름</title>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 원본 p22 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>서론 쓰기</h2>
+  <div class="body tighter">
+    <p class="sub" style="margin-bottom:4px;">1문단: 연구주제에 대한 간략한 동향(연구동향/실제 환경) 및 성과</p>
+    <ul>
+      <li>첫 문장은 가벼우면서도 흥미를 끌 수 있는 문장으로 기술
+        <ul style="margin-top:3px;">
+          <li>예1. 지난 20년 동안 도시연구자들은 도시공간구조의 측정과 변화에 대해서
+              지속적으로 관심을 가져왔다.</li>
+          <li>예2. 2022년 태풍으로 인한 집중호우로 서울 강남 일대가 침수된 것은 기후변화의
+              위험성을 알려주는 경고문과 같았다. 이후 많은 학자들은 기후변화 대응을 위한
+              도시계획적 방안이 시급히 마련되어야 할 필요가 있음을 깨닫기 시작했다.</li>
+        </ul>
+      </li>
+      <li>이후 지금까지 “내 연구주제”가 “특정한 방향”에서 활발히 연구되어 왔음을 제시</li>
+    </ul>
+    <p class="sub" style="margin:12px 0 4px;">2문단: 기존 연구가 최근 직면한 한계와 내 연구 세부주제의 중요성</p>
+    <ul>
+      <li>기존 연구의 성과에도 불구하고 “기존 연구”는 “내 연구질문을 통해 해결하려는 내용”을
+          충분히 해결하지 못함. 그 이유는 다음 중 하나 이상의 것 때문
+        <ul style="margin-top:3px;">
+          <li>여기까지 관심을 기울이지 못해서</li>
+          <li>데이터의 부족 때문에</li>
+          <li>시대변화 때문에</li>
+          <li>기타 이유</li>
+        </ul>
+      </li>
+      <li>하지만 “내 연구질문의 내용”은 “특정한 이유” 때문에 중요하고 반드시 해결되어야 함</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p23 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>서론 쓰기</h2>
+  <div class="body tight">
+    <p class="sub" style="margin-bottom:4px;">3문단: 연구목적, 연구방법 및 요약결론, 연구의 기여 제시</p>
+    <ul>
+      <li>이 연구는 “내 연구질문”을 해결하는 것이 목적</li>
+      <li>이 목적을 위해 다음과 같은 “연구방법론”을 활용
+        <ul style="margin-top:3px;"><li>분석법, 데이터 등이 제시될 수 있음</li></ul>
+      </li>
+      <li>이를 통해 “연구질문에 대해 다음과 같은 답”을 제시
+        <ul style="margin-top:3px;"><li>최종 결론을 살짝 보여줌으로써 독자의 이해도 제고</li></ul>
+      </li>
+      <li>이 연구는 “이 연구질문이 해결되지 못한 이유 중 하나를 특정한 방식으로 극복”하여
+          기존 연구에 기여함
+        <ul style="margin-top:3px;">
+          <li>본 연구의 차별성으로 강조할 부분(주제, 방법론, 자료 등)을 좀더 강조해서 기술</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="sub" style="margin:14px 0 4px;">4문단: 이후 논문의 구성</p>
+    <ul>
+      <li>이를 위한 논문의 구성은 다음과 같다.<br>
+          2장에서는 ~ . 3장에서는 ~ . 4장에서는 ~. 마지막으로 5장에서는 ~.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p24 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>선행연구 검토<span class="en">(literature review)</span> 쓰기</h2>
+  <div class="body stack">
+    <p class="emph">선행연구의 목적과 기능은 다음과 같다.</p>
+    <ol style="padding-left:20px; margin:6px 0 0;">
+      <li>내 연구의 위치 제시</li>
+      <li>기존 연구의 틈새를 발견하여 이 연구의 필요성 제시</li>
+      <li>연구의 틈새를 메울 새로운 단서의 제공: 내 연구에서 활용할 부분의 제시</li>
+    </ol>
+    <ul style="margin-top:18px;">
+      <li>선행연구는 단순히 연구 요약(summarize)이 아니라, 연구들을 읽고 공통된 내용을
+          나의 요약된 주장으로 종합(synthesize)하는 것이다.</li>
+      <li>선행연구는 본인의 생각보다 훨씬 넓고 많이 읽어야 한다.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p25 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>선행연구 검토<span class="en">(literature review)</span> 쓰기 예시</h2>
+  <div class="body">
+    <div class="triptych" style="gap:26px;">
+      <div class="cell" style="text-align:left;">
+        <p class="cell-title" style="text-align:left;">좋은 케이스</p>
+        <img class="im-shot" src="../assets/ex-litreview-good.png"
+             alt="여러 연구를 종합해 한 주장으로 쓴 문단" style="max-height:268px; width:auto;">
+      </div>
+      <div class="cell" style="text-align:left;">
+        <p class="cell-title" style="text-align:left;">아쉬운 케이스</p>
+        <img class="im-shot" src="../assets/ex-litreview-poor.png"
+             alt="저자와 연도를 앞세워 연구를 하나씩 나열한 문단" style="max-height:268px; width:auto;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 원본 p26 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>선행연구 검토<span class="en">(literature review)</span> 쓰기</h2>
+  <div class="body tight">
+    <ul>
+      <li>2장에 들어갈 전체 내용을 구성한다.
+        <ul style="margin-top:4px;">
+          <li>기본적으로 연구질문 잡을 때 사용한 세부주제-세세부주제-한계사항-극복방안별로
+              연구흐름을 훑는다.</li>
+          <li>단순하게 서론의 1,2문단이 각각 하나의 절로 들어간다고 생각하면 편하다.
+            <ul style="margin-top:3px;">
+              <li>서론의 1번째 문단: 연구내용의 세부 혹은 세세부주제 요약</li>
+              <li>서론의 2번째 문단: 세세부주제 내에서 기존 연구가 가진 한계점 제시</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li style="margin-top:12px;">각 문단은 “저자의 주장 - 선행연구 사례 혹은 보충문장”으로 구성한다.
+        <ul style="margin-top:4px;">
+          <li>문단 순서대로 저자의 주장을 담고 있는 첫번째 문장만 읽으면 주장하는 바를
+              이해할 수 있도록 작성한다.</li>
+        </ul>
+      </li>
+      <li style="margin-top:12px;">가급적이면 각 문장은 “저자(연도)는 ~”이렇게 쓰기보다,
+          여러 연구에서 드러난 공통된 사실을 종합하여 주장하는 문장으로 만들고 뒤에 해당
+          연구들을 인용한다.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p27 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>선행연구 검토<span class="en">(literature review)</span> 쓰기</h2>
+  <div class="body stack">
+    <p class="para-example">
+      노인의 이동성과 관련한 연구들은 대체로 노인들의 통행패턴이 다른 연령과 차별화된 경향을
+      보인다는 점을 강조한다. 우선적으로 발견되는 것은 노인의 통행패턴이 청년층(younger adults)이나
+      장년층(middle-age adults)과 다르다는 것이다(Feng et al., 2013; Figueroa et al., 2014;
+      Cheng et al., 2019). 이는 생애주기에 다른 효과이기도 하지만 코호트 효과, 즉 동질집단 간
+      경험하는 특성에 따라서도 차이를 보인다(Siren and Haustein, 2013). 생애주기에 비춰보면
+      노인의 경우 은퇴 등으로 인해 통근통행이 감소하고 그에 따라 재량시간이 증가하면서
+      비통근통행이 증가한다. 반면 코호트 효과에 따르면 1980년대의 60대와 2000년대의 60대의
+      통행패턴은 라이프스타일의 차이, 교육수준의 차이 등으로 인해 서로 다른 통행패턴을 보일 수 있다.
+    </p>
+    <p class="para-example" style="margin-top:14px;">
+      노인의 통행패턴 차이는 개인적 차원뿐만 아니라 근린의 생활환경이나 보행환경의 특성,
+      도시 전체의 공간구조 등 도시 건조 환경이 미치는 영향도 중요하다.
+      <span class="caption">(첫 문장에 이어서 이를 보충 - 종합된 내용 혹은 중요한 특정 논문을 가져와 설명)</span>
+    </p>
+  </div>
+</section>
+
+<!-- 원본 p28 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>방법론<span class="en">(methodology)</span> 쓰기</h2>
+  <div class="body stack">
+    <ul>
+      <li>방법론은 결과 도출을 위한 “레시피(recipe)”이다.</li>
+      <li style="margin-top:18px;">연구결과의 반복적 재현(reproducibility)이 가능하도록
+          최대한 “자세하게” 기술해야 한다.</li>
+      <li style="margin-top:18px;">국외 논문에서 방법론에 연구지역(study area)이 들어가는 경우
+          해외 리뷰어가 연구결과 도출에 영향을 미치는 한국 맥락을 이해할 수 있도록
+          충분히 자세히 기술한다.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p29 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>결과<span class="en">(result)</span> 쓰기</h2>
+  <div class="body stack">
+    <ul>
+      <li>연구결과는 저자가 제시한 레시피를 사용해 도출된 증거들을 제시하는 것이다.</li>
+      <li style="margin-top:16px;">분석결과 나온 내용 중 본인의 연구질문에 답할 증거들을
+          기술(description)하고 간단하게 설명한다.
+        <ul style="margin-top:5px;">
+          <li>만약 Discussion이 별도 챕터로 분리되지 않은 경우 증거를 설명할 때
+              설명(explanation)과 해석(interpretation)을 모두 자세하게 기술하여야 한다.</li>
+        </ul>
+      </li>
+      <li style="margin-top:16px;">회귀분석 등을 사용하였을 경우 대체로 정해진 문장방식이 존재한다.
+        <ul style="margin-top:5px;">
+          <li>예. The variable X is positively/negatively associated with Y (dependent variable)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p30 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>토론<span class="en">(discussion)</span> 쓰기</h2>
+  <div class="body tight">
+    <ul>
+      <li>토론은 연구결과를 통해 도출된 증거를 활용해서 서론에 제기한 본인의 연구질문에
+          답하는 과정이다.</li>
+      <li style="margin-top:12px;">토론은 다음 순서대로 충분히 자세하고 본인 주장을 제시하며 쓴다.
+          다만 <strong class="hl">논리적 비약은 금물!</strong></li>
+    </ul>
+    <ol style="padding-left:20px; margin:6px 0 0;">
+      <li>서론에 제시한 연구질문의 제시</li>
+      <li>연구질문별 결과파트에 제시한 증거의 제시</li>
+      <li>선행연구와 비교를 통한 증거의 설명과 해석
+        <ol style="padding-left:20px; margin-top:4px; list-style:decimal;">
+          <li>일치되는 결과(consistent with) / 상반되는 결과(is different from, contrast with)</li>
+          <li>왜 이런 결과가 나타났는지에 대한 설명과 해석</li>
+        </ol>
+      </li>
+      <li>증거를 통해 내가 어떻게 기존 연구에 기여하고 있는지 제시</li>
+    </ol>
+    <p class="derive" style="margin-top:14px;">토론 작성을 위해서는 “선행연구 고찰”이 필수적이다.</p>
+  </div>
+</section>
+
+<!-- 원본 p31 -->
+<section>
+  <p class="kicker">4. 논문 쓰기</p>
+  <h2>결론<span class="en">(conclusion)</span> 쓰기</h2>
+  <div class="body stack">
+    <p class="lead t-define">결론은 전체적인 연구내용을 정리하기 위한 파트이다.</p>
+    <ul style="margin-top:20px;">
+      <li>결론은
+        <ul style="margin-top:8px;">
+          <li>1문단: 연구내용의 요약</li>
+          <li>2문단: 연구를 통한 기여</li>
+          <li>3문단: 연구의 한계와 후속 연구</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ 5. 리뷰페이퍼 작성하기 ══════════ -->
+
+<!-- 원본 p32 -->
+<section>
+  <p class="kicker">5. 리뷰페이퍼 작성하기</p>
+  <h2>리뷰페이퍼<span class="en">(review paper)</span>란?</h2>
+  <div class="body stack">
+    <ul>
+      <li>특정 주제(대주제, 세부주제, 세세부주제)의 내용, 접근법, 결과 등을 중심으로</li>
+      <li>기존 연구의 흐름을 정리하고</li>
+      <li>향후 연구방향 혹은 새로운 연구주제를 제시하는 글</li>
+    </ul>
+    <p class="sub" style="margin:24px 0 6px;">Original research paper vs. Review paper</p>
+    <ul>
+      <li>Original research paper: 새로운 증거로 본인의 의견을 주장하는 논문</li>
+      <li>Review paper: 기존 연구들을 종합하여 본인의 의견을 주장하는 논문</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p33 -->
+<section>
+  <p class="kicker">5. 리뷰페이퍼 작성하기</p>
+  <h2>리뷰페이퍼<span class="en">(review paper)</span>의 유형</h2>
+  <div class="body tight">
+    <p class="sub" style="margin-bottom:5px;">1. 서술적 리뷰(narrative review)</p>
+    <ul>
+      <li>특정 주제에 대한 기존 연구를 다양한 측면(주제, 시간, 방법론과 디자인, 결과)
+          중심으로 정리하여 전반적인 이해를 제공하고, 주관적인 견해를 가급적 배제</li>
+      <li>체계적으로 문헌을 파악하는 것이 아닌 연구자의 주관에 따라 선택적으로 문헌 탐색</li>
+      <li>일반적으로 문헌들에 대한 양적 탐색보다 연구들의 종합에 초점을 둠</li>
+    </ul>
+    <p class="sub" style="margin:16px 0 5px;">2. 비판적 리뷰(critical review)</p>
+    <ul>
+      <li>서술적 리뷰와 유사하지만 기존 연구에 대한 단순 종합을 넘어 비판적으로 검토하고
+          본인의 주장을 강하게 제시</li>
+      <li>체계적으로 문헌을 파악하는 것이 아닌 연구자의 주관에 따라 선택적으로 문헌 탐색</li>
+      <li>일반적으로 문헌들에 대한 양적 탐색보다 연구들의 종합에 초점을 둠</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p34 -->
+<section>
+  <p class="kicker">5. 리뷰페이퍼 작성하기</p>
+  <h2>리뷰페이퍼<span class="en">(review paper)</span>의 유형</h2>
+  <div class="body tighter">
+    <p class="sub" style="margin-bottom:5px;">3. 체계적 리뷰(systematic review)</p>
+    <ul>
+      <li>일반적으로 PRISMA(Preferred Reporting Items for Systematic Reviews and Meta-Analyses)
+          가이드라인에 따라 체계적으로 문헌을 탐색</li>
+      <li>비판적인 리뷰도 가능하지만 대체로 연구자가 구분한 문헌 분류기준(연도별, 지역별,
+          세부주제별 등)에 따른 양적인 동향 탐색에 초점을 둠</li>
+      <li>주관적인 문헌 추출이 아닌 특정 기준에 맞는 모든 문헌들을 검토하기 때문에
+          비판성을 갖기 어려움</li>
+    </ul>
+    <p class="sub" style="margin:14px 0 5px;">4. 메타분석(meta-analysis)</p>
+    <ul>
+      <li>특정 연구질문에 대한 양적 논문을 통계적으로 종합하여 통합적 결론을 도출</li>
+      <li>문헌 수집을 위해 체계적 리뷰의 PRISMA 기준을 따르는 경우가 많음</li>
+      <li>연구별 개별효과의 크기를 통합할 수 있는 통계방법 사용
+        <ul style="margin-top:3px;">
+          <li>여러 연구의 회귀분석 계수를 통합: 개념적 일관성과 효과의 표준화만 가능하다면 종합 가능</li>
+          <li>고정효과모델, 랜덤효과모델, 베이즈 메타분석, 누적 메타분석 등</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p35 -->
+<section>
+  <p class="kicker">5. 리뷰페이퍼 작성하기</p>
+  <h2>리뷰페이퍼<span class="en">(review paper)</span>의 구분</h2>
+  <div class="body stack">
+    <p class="lead t-define">비판이 적다고 해서 자기 주장이 없는 것은 아니며,
+       연구자 고유의 종합(synthesis)이 중요</p>
+    <table style="margin-top:22px; width:76%; margin-left:auto; margin-right:auto;">
+      <thead>
+        <tr><th>유형</th><th>비판정도</th><th>문헌추출의 체계성</th><th>리뷰종합방식</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>서술적 리뷰</td><td>약함</td><td>주관적</td><td>질적</td></tr>
+        <tr><td>비판적 리뷰</td><td>강함</td><td>주관적</td><td>질적</td></tr>
+        <tr><td>체계적 리뷰</td><td>약함</td><td>체계적</td><td>양적</td></tr>
+        <tr><td>메타 분석</td><td>약함</td><td>체계적</td><td>양적</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 원본 p36 -->
+<section>
+  <p class="kicker">5. 리뷰페이퍼 작성하기</p>
+  <h2>리뷰페이퍼<span class="en">(review paper)</span> 사례</h2>
+  <div class="body tight">
+    <p class="sub" style="margin-bottom:5px;">비판적 리뷰</p>
+    <ul>
+      <li>권규상. (2016). 도시 네트워크의 규범적 개념화에 대한 비판적 검토.
+          한국도시지리학회지, 19(2), 263-282.</li>
+    </ul>
+    <p class="sub" style="margin:14px 0 5px;">체계적 리뷰</p>
+    <ul>
+      <li>손정렬. (2020). 빅데이터 연구에서의 빅마켓, 빅네임 그리고 빅네트워크:
+          국제학술지를 통해 본 도시 빅데이터 연구동향. 대한지리학회지. 55(2), 161-179.</li>
+      <li>조준혁. (2024). 도시와 로봇의 상호작용에 관한 체계적 문헌고찰-인간과 로봇이
+          공존하는 도시설계를 위한 탐색. 도시설계, 25(6), 5-24.</li>
+      <li>김은정. (2023). 부동산학 연구에서 근린의 보행친화성 (Walkability) 은 중요한가?:
+          문헌고찰을 중심으로. 부동산정책연구, 24(2), 26-41.</li>
+    </ul>
+    <p class="sub" style="margin:14px 0 5px;">메타 분석</p>
+    <ul>
+      <li>송재민. (2021). 도시형태가 통행행태에 미치는 영향 메타분석. 국토계획, 56(7), 103-114.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p37 -->
+<section>
+  <p class="kicker">5. 리뷰페이퍼 작성하기</p>
+  <h2>리뷰페이퍼<span class="en">(review paper)</span> 유형별 챕터 구성</h2>
+  <div class="body tighter">
+    <div class="triptych" style="gap:30px; align-items:flex-start;">
+      <div class="cell" style="text-align:left;">
+        <p class="cell-title" style="text-align:left;">서술적/비판적 리뷰</p>
+        <ol style="padding-left:20px; margin:0;">
+          <li>서론: 특정 주제에 대한 리뷰가 필요한 이유 제시</li>
+          <li>기존 연구 요약
+            <ul style="margin-top:3px;">
+              <li>본인의 생각에 맞게 조합</li>
+              <li>대체로 역사적 과정을 중심으로 기술</li>
+            </ul>
+          </li>
+          <li>기존 연구의 논평
+            <ul style="margin-top:3px;"><li>기존 연구의 한계 혹은 공백 등 기술</li></ul>
+          </li>
+          <li>새로운 연구방향 제시
+            <ul style="margin-top:3px;">
+              <li>기존 연구의 공백을 메울 새로운 연구 이론, 방법론 등 제시</li>
+              <li>본인이 제시한 이론, 방법론에 기반했을 때의 강점 제시</li>
+            </ul>
+          </li>
+          <li>결론</li>
+        </ol>
+      </div>
+      <div class="cell" style="text-align:left;">
+        <p class="cell-title" style="text-align:left;">체계적/메타분석</p>
+        <ol style="padding-left:20px; margin:0;">
+          <li>서론: 특정 주제에 대한 리뷰가 필요한 이유 제시</li>
+          <li>기존 연구 요약
+            <ul style="margin-top:3px;"><li>양적 검토 이전 해당 주제의 일반적 흐름 제시</li></ul>
+          </li>
+          <li>방법론
+            <ul style="margin-top:3px;">
+              <li>검색 전략, 포함/제외 기준, 데이터 추출 및 질 평가 방법</li>
+              <li>일반적으로 PRISMA 원칙에 따라 문헌을 검색하고 제외한 뒤 종합하는 방법을 제시</li>
+            </ul>
+          </li>
+          <li>결과: 양적 검토 결과 제시</li>
+          <li>논의
+            <ul style="margin-top:3px;">
+              <li>검토 결과에 따른 해석</li>
+              <li>기존 연구의 공백지점과 제한점 제시</li>
+            </ul>
+          </li>
+          <li>결론</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 6. 연구윤리 ══════════ -->
+
+<!-- 원본 p38 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>연구부정행위의 범위</h2>
+  <p class="corner-note">* 연구윤리확보를 위한 지침 제11조</p>
+  <div class="body tighter">
+    <ul>
+      <li><strong>위조</strong>: 존재하지 않는 연구 원자료 또는 연구자료, 연구결과 등을 허위로
+          만들거나 기록 또는 보고하는 행위</li>
+      <li><strong>변조</strong>: 연구 재료ㆍ장비ㆍ과정 등을 인위적으로 조작하거나 연구 원자료 또는
+          연구자료를 임의로 변형ㆍ삭제함으로써 연구 내용 또는 결과를 왜곡하는 행위</li>
+      <li><strong>표절</strong>: 일반적 지식이 아닌 타인의 독창적인 아이디어 또는 창작물을 적절한
+          출처표시 없이 활용함으로써, 제3자에게 자신의 창작물인 것처럼 인식하게 하는 행위</li>
+      <li><strong>부당한 저자 표시</strong>: 연구내용 또는 결과에 대하여 공헌 또는 기여를 한 사람에게
+          정당한 이유 없이 저자 자격을 부여하지 않거나, 공헌 또는 기여를 하지 않은 사람에게
+          감사의 표시 또는 예우 등을 이유로 저자 자격을 부여하는 행위</li>
+      <li><strong>부당한 중복게재</strong>: 연구자가 자신의 이전 연구결과와 동일 또는 실질적으로
+          유사한 저작물을 출처표시 없이 게재한 후, 연구비를 수령하거나 별도의 연구업적으로
+          인정받는 경우 등 부당한 이익을 얻는 행위</li>
+      <li><strong>연구부정행위에 대한 조사 방해 행위</strong>: 본인 또는 타인의 부정행위에 대한
+          조사를 고의로 방해하거나 제보자에게 위해를 가하는 행위</li>
+      <li>그 밖에 각 학문분야에서 통상적으로 용인되는 범위를 심각하게 벗어나는 행위</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p39 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>표절</h2>
+  <div class="body">
+    <p class="emph">일반적 지식이 아닌 타인의 독창적인 아이디어 또는 창작물을 적절한 출처표시 없이
+       활용함으로써, 제3자에게 자신의 창작물인 것처럼 인식하게 하는 행위</p>
+    <p class="sub" style="margin:18px 0 6px;">표절이 되는 경우</p>
+    <ol style="padding-left:20px; margin:0;">
+      <li>타인의 연구내용 전부 또는 일부를 출처를 표시하지 않고 그대로 활용하는 경우</li>
+      <li>타인의 저작물의 단어ㆍ문장구조를 일부 변형하여 사용하면서 출처표시를 하지 않는 경우</li>
+      <li>타인의 독창적인 생각 등을 활용하면서 출처를 표시하지 않은 경우</li>
+      <li>타인의 저작물을 번역하여 활용하면서 출처를 표시하지 않은 경우</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 원본 p40 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>표절</h2>
+  <div class="body tight stack">
+    <p class="sub" style="margin-bottom:8px;">1. 타인의 연구내용 전부 또는 일부를 출처를 표시하지 않고
+       그대로 활용하는 경우</p>
+    <div class="quote-pair">
+      <div>
+        <p class="quote-label">&lt;의심원문&gt;</p>
+        <div class="quote-box">문제는 독일 전체에서 동독지역 근로자가 차지하는 비중이 1991년
+          21.9%에서 2014년 18.1%로 감소하여 동독지역의 노동력 감소 폭이 인구 감소 폭보다 다소
+          크게 나타나고 있다는 점이다. 이는 통일 이후 동독지역 출생자들이 학업으로 인해
+          경제활동인구에서 이탈했거나 동독 구사회주의 정권 시절 과잉 고용 현상이 조정되었기
+          때문인 것으로 이해된다.</div>
+      </div>
+      <div>
+        <p class="quote-label">&lt;선행연구 원문&gt;</p>
+        <div class="quote-box">문제는 독일 전체에서 동독지역 근로자가 차지하는 비중이 1991년
+          21.9%에서 2014년 18.1%로 동독지역의 노동력 감소폭이 인구 감소 폭보다 다소 크게
+          나타나고 있다는 점이다. 이는 통일이후 동독지역 출생자들이 학업으로 인해 경제활동인구에서
+          이탈하거나 또는 동독 구사회주의 정권시절 과잉고용 현상의 조정으로 이해할 수 있다
+          <span class="quote-src">출처: 경제인문사회연구회(2020), 국책연구기관 연구윤리 평가사례 2020, 75-79 발췌</span>
+        </div>
+      </div>
+    </div>
+    <p class="derive" style="margin-top:12px;">→ 해결방안은? 1) 직접인용(따옴표) + 출처표시,
+       2) 간접인용(paraphrasing) + 출처표시</p>
+  </div>
+</section>
+
+<!-- 원본 p41 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>표절</h2>
+  <div class="body tight stack">
+    <p class="sub" style="margin-bottom:4px;">표절이 되는 경우</p>
+    <ul style="margin-bottom:10px;">
+      <li>2. 타인의 저작물의 단어ㆍ문장구조를 일부 변형하여 사용하면서 출처표시를 하지 않는 경우</li>
+      <li>3. 타인의 독창적인 생각 등을 활용하면서 출처를 표시하지 않은 경우</li>
+      <li>4. 타인의 저작물을 번역하여 활용하면서 출처를 표시하지 않은 경우</li>
+    </ul>
+    <div class="quote-pair">
+      <div>
+        <p class="quote-label">&lt;의심원문&gt;</p>
+        <div class="quote-box">국가와 지역에 따라 교육에 대한 장벽과 이를 극복하기 위한 해결책은
+          다르지만 교육이 인간의 기본적인 권리이며 개인에게 기회를 제공하는 관문이라는 점에는
+          이견이 없다.</div>
+      </div>
+      <div>
+        <p class="quote-label">&lt;선행연구 원문&gt;</p>
+        <div class="quote-box">The barriers to education, and the most effective solutions,
+          will vary by country. But the commitment to learning must be constant and unwavering.
+          (SG HLPEP, 2013)
+          <span class="quote-src">출처: 경제인문사회연구회(2020), 국책연구기관 연구윤리 평가사례 2020, 81-84 발췌</span>
+        </div>
+      </div>
+    </div>
+    <p class="derive" style="margin-top:12px;">→ 해결방안은? Paraphrasing + 출처표시</p>
+  </div>
+</section>
+
+<!-- 원본 p42 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>표절에 관한 몇 가지 오해</h2>
+  <div class="body tight">
+    <ol class="qa-list" style="padding-left:20px; margin:0;">
+      <li><strong>출처표기만 하면 표절이 아닌가요?</strong>
+        <span class="ans">→ No! 직접인용이 아닌 이상 말바꿔쓰기(재진술, paraphrasing)를 통해
+          문장 구조를 다르게 해야함</span></li>
+      <li><strong>말바꿔쓰기는 단어 몇 개만 바꾸면 되는건가요?</strong>
+        <span class="ans">→ No! 말바꿔쓰기는 기존 문헌의 의미만 남긴 채 내 문장으로 뱉어내야 함</span></li>
+      <li><strong>내가 본 문헌(A)에서 다른 문헌(B)을 인용하여 작성한 내용을 말바꿔쓰기하고
+          출처표시하면 표절이 아닌가요?</strong>
+        <span class="ans">→ No! 내가 B를 본 적이 없으므로 표절로 간주함. 이 경우 “재인용”을 해야함</span></li>
+      <li><strong>인용표기만 한다면 재인용도 괜찮나요?</strong>
+        <span class="ans">→ 연구윤리 문제는 없으나 가급적 지양하고 원문을 확인할 수 없을 때만
+          최소한으로 활용<br>
+          → 재인용 시에는 (본래 원문 저자(B), 연도 (내가 본 문헌 저자(A), 연도에서 재인용))으로
+          표기 (* 저널에 따라 다름)</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 원본 p43 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>표절을 방지하는 방법</h2>
+  <div class="body stack">
+    <ol style="padding-left:20px; margin:0;">
+      <li>기존 문헌에서 참고해서 쓴 내용은 참고해서 썼다고 명확히 밝히자!</li>
+      <li style="margin-top:14px;">기존 문헌을 옆에 펴놓고 보면서 쓰지 말자!</li>
+      <li style="margin-top:14px;">기존 문헌에서 정말 필요한 문구가 아니면 가급적 직접 인용하지 말자!</li>
+      <li style="margin-top:14px;">직접인용 할 경우에는
+        <ol style="padding-left:20px; margin-top:5px; list-style:decimal;">
+          <li>본문에서 들여쓰기하고</li>
+          <li>따옴표(“”)로 인용한 문구를 표시한 후</li>
+          <li>(원문저자, 연도, 페이지)로 출처 표기</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- 원본 p44 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>부당한 저자표시</h2>
+  <div class="body tight">
+    <p class="emph">연구내용 또는 결과에 대하여 공헌 또는 기여를 한 사람에게 정당한 이유 없이
+       저자 자격을 부여하지 않거나, 공헌 또는 기여를 하지 않은 사람에게 감사의 표시 또는 예우
+       등을 이유로 저자 자격을 부여하는 행위</p>
+    <p class="sub" style="margin:14px 0 5px;">부당한 저자표시에 해당하는 경우</p>
+    <ol style="padding-left:20px; margin:0;">
+      <li>연구내용 또는 결과에 대한 공헌 또는 기여가 없음에도 저자 자격을 부여하는 경우
+          - 선물저자(Gift author)</li>
+      <li>연구내용 또는 결과에 대한 공헌 또는 기여가 있음에도 저자 자격을 부여하지 않는 경우
+          - 유령저자(Ghost author)</li>
+      <li>지도학생의 학위논문을 학술지 등에 지도교수의 단독 명의로 게재ㆍ발표하는 경우</li>
+    </ol>
+    <p class="sub" style="margin:14px 0 5px;">Authorship을 명확히 설정하는 방법</p>
+    <ol style="padding-left:20px; margin:0;">
+      <li>연구기획단계부터 저자별 역할(1저자, 교신저자, 공저자) 및 영역(각 저자별 분담내용) 등을
+          명확히 한다.</li>
+      <li>연구중간단계에 새로운 저자가 들어올 경우 모든 저자가 참여하여 해당 저자의 참여여부 및
+          역할을 정의한다.</li>
+      <li>연구기획-중간-최종단계에 이르기까지 저자의 변경이 있을 경우 모든 저자의 확약을 받아
+          진행한다.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 원본 p45 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>부당한 중복게재</h2>
+  <div class="body tighter">
+    <p class="emph">연구자가 자신의 이전 연구결과와 동일 또는 실질적으로 유사한 저작물을 출처표시
+       없이 게재한 후, 연구비를 수령하거나 별도의 연구업적으로 인정받는 경우 등 부당한 이익을
+       얻는 행위</p>
+    <p class="sub" style="margin:14px 0 5px;">부당한 중복게재인 경우와 아닌 경우</p>
+    <div class="triptych" style="gap:26px; align-items:flex-start;">
+      <div class="cell" style="text-align:left;">
+        <p class="cell-title" style="text-align:left;">중복게재인 경우</p>
+        <ul>
+          <li>학술지 논문 → 학술지 논문 <span class="caption">(* 단, 중복의 정도를 따져야 함)</span></li>
+          <li>단행본 → 학술지 논문</li>
+          <li>단행본 → 단행본 <span class="caption">(* 단, 특정 챕터의 요약 혹은 편집본이면서
+              출처를 명확히 제시할 경우 중복게재 아님)</span></li>
+        </ul>
+      </div>
+      <div class="cell" style="text-align:left;">
+        <p class="cell-title" style="text-align:left;">중복게재가 아닌 경우</p>
+        <ul>
+          <li>학위논문 → 학술지 논문 <span class="caption">(* 통상적으로 중복게재가 아님)</span></li>
+          <li>학술지 논문 → 학위논문 <span class="caption">(* 해당 학교의 규정에 따름)</span></li>
+          <li>학술지 논문 → 단행본 <span class="caption">(* 출처표시 및 해당 학술지의 양해를 구한 경우)</span></li>
+          <li>학술대회 논문 → 학술지 논문 <span class="caption">(* 대개 아니지만 SW 분야에서 같이
+              실적으로 인정하는 경우는 확인 필요)</span></li>
+          <li>Preprint(예. arxiv) → 학술지 논문 <span class="caption">(* SCIE는 대개 중복게재 아님.
+              저널 및 출판사마다 정책 반드시 확인)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 원본 p46 -->
+<section>
+  <p class="kicker">6. 연구윤리</p>
+  <h2>부당한 중복게재</h2>
+  <div class="body stack">
+    <p class="sub" style="margin-bottom:10px;">부당한 중복게재의 일반적 판정 요건</p>
+    <ul>
+      <li>출판 여부: 출판은 대중에게 공개되는지의 여부를 따짐
+        <ul style="margin-top:5px;">
+          <li>학위논문은 통상적으로 미발간으로 간주</li>
+          <li>학술대회 논문은 작성 중이므로 출판으로 간주되지 않음</li>
+        </ul>
+      </li>
+      <li style="margin-top:16px;">독자층의 확대: 독자층을 확대하는 경우에는 대체로 인정함</li>
+      <li style="margin-top:16px;">출처표시와 부당이득 여부: 출처를 표시하고 부당이득의 효과가
+          없더라도 엄밀하게는 중복게재일 수 있음</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 원본 p47 -->
+<section class="s-split wide-left">
+  <p class="kicker">6. 연구윤리</p>
+  <h2>생성형 AI<span class="en">(Generative AI)</span>의 활용</h2>
+  <div class="body tight">
+    <div class="col-l">
+      <ul>
+        <li>생성형 AI를 논문에 활용하는 것은 가능하지만 “윤문, 문법체크 등 글의 자연스러움을
+            보완하는 수준”에서만 활용</li>
+        <li style="margin-top:12px;">논문 내 내용에 대한 모든 책임은 저자에게 있음
+            <span class="caption">(* 생성형 AI는 저자가 아님)</span></li>
+        <li style="margin-top:12px;">어떠한 방식이든 생성형 AI를 사용하였을 경우 투고 시
+            활용여부를 밝히는 추세</li>
+        <li style="margin-top:12px;">생성형 AI 활용에 대해서는 여전히 논쟁 중이므로 언제든지
+            정책이 변경될 수 있으니 투고 전 반드시 저널의 편집규정 혹은 Guide for Author를
+            꼼꼼히 체크하고 투고</li>
+      </ul>
+    </div>
+    <div class="col-r">
+      <div class="logo-strip" style="flex-direction:column; align-items:flex-start; gap:16px;">
+        <img class="im-logo" src="../assets/ex-chatgpt.png" alt="ChatGPT">
+        <img class="im-logo" src="../assets/ex-gemini.png" alt="Gemini">
+        <img class="im-logo" src="../assets/ex-perplexity.jpg" alt="Perplexity">
+        <img class="im-logo" src="../assets/ex-claude.png" alt="Claude">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 마무리 (원본 p48) ══════════ -->
+<section class="s-closing">
+  <h2 class="qa">Q &amp; A</h2>
+  <hr class="qa-rule">
+  <p class="contact">권규상 Kyusang Kwon <span class="en">(kyusang.kwon@chungbuk.ac.kr)</span></p>
+</section>
+
+</div></div>
+
+<script src="../../_shared/vendor/reveal/reveal.js"></script>
+<script src="../../_shared/vendor/reveal/plugin/notes.js"></script>
+<script src="../../_shared/vendor/reveal/plugin/math.js"></script>
+<script src="../../_shared/js/talk-init.js"></script>
+
+<script>
+/* ── 개념도 세 개 ────────────────────────────────────────────
+   원본은 PPT 도형이라 이미지가 아니다. 좌표를 손으로 흩뿌리지 않고
+   상수 하나에서 유도한다 (design.md §6.5).                              */
+
+(function () {
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, text) => {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    return n;
+  };
+  const add = (p, tag, attrs, text) => { const n = el(tag, attrs, text); p.append(n); return n; };
+
+  /* 화살촉 하나를 defs 에 정의해 세 그림이 함께 쓴다 */
+  function ensureMarker(svg, id, color) {
+    const defs = add(svg, 'defs', {});
+    const m = add(defs, 'marker', {
+      id, viewBox: '0 0 10 10', refX: '9', refY: '5',
+      markerWidth: '5', markerHeight: '5', orient: 'auto-start-reverse',
+    });
+    add(m, 'path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: color });
+  }
+
+  /* ── 1) 도시공학 스펙트럼 (원본 p3) ───────────────────────
+     일곱 분야가 공학적 성격 강함 → 약함 순으로 늘어선다.
+     칸 너비는 폭에서 나눠 구한다 — 손으로 찍지 않는다. */
+  (function spectrum() {
+    const svg = document.querySelector('#fig-spectrum');
+    if (!svg) return;
+    const FIELDS = ['교통', '방재', '공간분석', '환경정책', '도시계획', '토지/부동산', '도시설계'];
+    const X0 = 10, X1 = 830, TOP = 34, H = 40;
+    const w = (X1 - X0) / FIELDS.length;
+
+    add(svg, 'text', { x: (X0 + X1) / 2, y: 18, class: 'annot', 'text-anchor': 'middle',
+                       'font-weight': '700' }, '도시공학');
+
+    FIELDS.forEach((name, i) => {
+      const x = X0 + i * w;
+      add(svg, 'rect', { x, y: TOP, width: w, height: H,
+                         fill: 'none', stroke: 'var(--rule)', 'stroke-width': 1 });
+      add(svg, 'text', { x: x + w / 2, y: TOP + H / 2 + 4, class: 'annot',
+                         'text-anchor': 'middle' }, name);
+    });
+
+    /* 두 성격 띠. 왼쪽 라벨 · 가운데 이름 · 오른쪽 라벨 */
+    const bars = [
+      { y: TOP + H + 26, name: '공학적 성격',   left: '강함', right: '약함' },
+      { y: TOP + H + 76, name: '사회과학적 성격', left: '약함', right: '강함' },
+    ];
+    bars.forEach((b) => {
+      add(svg, 'line', { x1: X0 + 56, y1: b.y, x2: X1 - 56, y2: b.y,
+                         stroke: 'var(--guide)', 'stroke-width': 1.2 });
+      add(svg, 'text', { x: X0, y: b.y + 4, class: 'annot red', 'font-weight': '700' }, b.left);
+      add(svg, 'text', { x: X1, y: b.y + 4, class: 'annot red', 'font-weight': '700',
+                         'text-anchor': 'end' }, b.right);
+      add(svg, 'text', { x: (X0 + X1) / 2, y: b.y - 8, class: 'annot',
+                         'text-anchor': 'middle' }, b.name);
+    });
+  })();
+
+  /* ── 2) 기여의 정도 (원본 p8) ─────────────────────────────
+     위 끝이 높은 기여, 아래 끝이 낮은 기여. 가운데 다섯 항목은
+     양 끝 사이를 균등하게 나눈 자리에 놓는다. */
+  (function contribution() {
+    const svg = document.querySelector('#fig-contrib');
+    if (!svg) return;
+    ensureMarker(svg, 'arr-contrib', 'var(--brand-crimson)');
+
+    const ITEMS = ['새로운 주제의 제시', '기존 주제에 대한 관점의 변화', '방법론의 개선',
+                   '데이터의 개선', '사례의 변화(장소, 시간, 대상 등)'];
+    const TOP = 42, BOT = 214, AX = 34, TX = 60;
+
+    add(svg, 'text', { x: 0, y: 14, class: 'annot red', 'font-weight': '700' }, '높은 기여:');
+    add(svg, 'text', { x: 0, y: 30, class: 'annot' }, '새로운 패러다임과 연구방향을 제시하는 것');
+
+    add(svg, 'line', { x1: AX, y1: TOP, x2: AX, y2: BOT, class: 'arrow red',
+                       'marker-start': 'url(#arr-contrib)', 'marker-end': 'url(#arr-contrib)' });
+
+    const gap = (BOT - TOP) / (ITEMS.length + 1);
+    ITEMS.forEach((t, i) => {
+      const y = TOP + gap * (i + 1) + 4;
+      add(svg, 'text', { x: TX, y, class: 'annot' }, '– ' + t);
+    });
+
+    add(svg, 'text', { x: 0, y: BOT + 24, class: 'annot red', 'font-weight': '700' }, '낮은 기여:');
+    add(svg, 'text', { x: 0, y: BOT + 40, class: 'annot' },
+        '기존 연구에 새로운 근거를 제시하여');
+    add(svg, 'text', { x: 0, y: BOT + 56, class: 'annot' }, '기존 주장을 강화 혹은 약화');
+  })();
+
+  /* ── 3) 연구질문 도출 흐름 (원본 p10 · p21~23) ────────────
+     상자 네 개가 같은 간격으로 내려오고, 상자 사이마다 화살표가 하나씩.
+     간격을 상수로 두고 상자 y 좌표를 인덱스에서 구한다. */
+  function flow(sel) {
+    const svg = document.querySelector(sel);
+    if (!svg) return;
+    const id = 'arr-' + sel.replace('#', '');
+    ensureMarker(svg, id, 'var(--ink-2)');
+
+    const BOX = ['사례', '이론검토', '연구공백 발견', '연구질문 구체화'];
+    const BW = 150, BH = 34, BX = 14, Y0 = 12, STEP = 92;
+
+    /* 화살표 옆에 붙는 설명. 마지막 화살표에는 설명이 없다. */
+    const NOTE = [
+      ['이론으로 설명 가능한가?', '기존 이론으로 모두 설명됨'],
+      ['설명이 부족한 부분/반증의 발견', null],
+      [null, null],
+    ];
+
+    BOX.forEach((name, i) => {
+      const y = Y0 + i * STEP;
+      add(svg, 'rect', { x: BX, y, width: BW, height: BH, rx: 2,
+                         fill: 'none', stroke: 'var(--ink-2)', 'stroke-width': 1.2 });
+      add(svg, 'text', { x: BX + BW / 2, y: y + BH / 2 + 4, class: 'annot',
+                         'text-anchor': 'middle' }, name);
+
+      if (i === BOX.length - 1) return;
+      const y1 = y + BH, y2 = Y0 + (i + 1) * STEP;
+      add(svg, 'line', { x1: BX + BW / 2, y1, x2: BX + BW / 2, y2, class: 'arrow',
+                         'marker-end': 'url(#' + id + ')' });
+
+      const [main, side] = NOTE[i];
+      const my = (y1 + y2) / 2;
+      if (main) add(svg, 'text', { x: BX + BW + 18, y: my - (side ? 6 : 4), class: 'annot' }, main);
+      if (side) add(svg, 'text', { x: BX + BW + 18, y: my + 14, class: 'annot muted' },
+                    '↳ ' + side);
+    });
+  }
+  flow('#fig-flow');
+  flow('#fig-flow2');
+})();
+</script>
+</body>
+</html>
