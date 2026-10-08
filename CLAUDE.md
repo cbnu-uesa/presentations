@@ -214,6 +214,9 @@ claude.ai 슬라이드 아티팩트로 만든 발표를 웹에 올릴 때의 순
    외부 출처면 `ex-`를 붙인다.
 3. `python3 _scripts/import-artifact.py <받은 폴더> <발표폴더>`
 4. `_scripts/build-pdf.sh <발표폴더>/slides/deck.html` 후 PDF를 쪽마다 눈으로 본다.
+   아티팩트가 하던 일 가운데 둘은 우리가 흉내 낸다. 화살표(`x-connector`)는 스크립트가
+   SVG로 바꾸고, 높이가 정해진 글상자에 글이 넘치면 `talk-init.js`가 글자를 60%까지 줄인다.
+   스크립트가 모르는 아티팩트 전용 태그(`x-shape`·`x-icon`·`x-embed`)가 나오면 멈춘다.
    `check-figures.sh`는 960 덱용이라 이 덱에는 맞지 않는다.
 5. 배포 절차를 따른다.
 

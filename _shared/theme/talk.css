@@ -130,9 +130,26 @@
 
    쓰는 법:  <div class="reveal canvas-1920" data-width="1920" data-height="1080"> */
 
+/* 아티팩트는 굵기마다 글꼴 이름을 따로 짓는다. 덱마다 이름이 달라 여기 모은다.
+   파일은 _shared/fonts 의 것과 같다 (sha256 으로 대조함, 2026-10-08). */
 @font-face {
   font-family: 'Pretendard Bold';
   src: url('../fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: 'Pretendard Bd';
+  src: url('../fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: 'Pretendard Md';
+  src: url('../fonts/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 400 700; font-style: normal; font-display: block;
+}
+@font-face {
+  font-family: 'Bookk Myungjo';
+  src: url('../fonts/BookkMyungjo-Bold.woff2') format('woff2');
   font-weight: 400 700; font-style: normal; font-display: block;
 }
 

@@ -151,6 +151,24 @@
       `장당 ${(me.minutes * 60 / sections.length).toFixed(0)}초`);
   }
 
+  // ── 넘치는 글자 줄이기 (1920 캔버스 덱만) ──────────────────
+  // 슬라이드 아티팩트는 높이를 정한 글상자에 글이 넘치면 그 상자의 글자를
+  // 원래 크기의 60%까지 줄인다 (아티팩트 styles.md "a squeezed box shrinks its text").
+  // 옮긴 덱이 같은 모양이 되도록 같은 규칙을 흉내 낸다. 상자 안 글자 크기는 비례로 줄인다.
+  if (deck.classList.contains('canvas-1920')) {
+    await document.fonts.ready;
+    deck.querySelectorAll('.canvas :is(p, h1, h2, h3)').forEach((box) => {
+      if (!/(^|;)\s*height\s*:/.test(box.getAttribute('style') || '')) return;
+      if (box.scrollHeight <= box.clientHeight + 1) return;
+      const els = [box, ...box.querySelectorAll('*')];
+      const base = els.map((el) => parseFloat(getComputedStyle(el).fontSize));
+      for (let k = 0.98; k >= 0.6; k -= 0.02) {
+        els.forEach((el, i) => { el.style.fontSize = (base[i] * k).toFixed(2) + 'px'; });
+        if (box.scrollHeight <= box.clientHeight + 1) break;
+      }
+    });
+  }
+
   // ── Reveal ────────────────────────────────────────────────
   Reveal.initialize({
     // design.md §2.1 — PPT의 pt와 CSS px를 1:1로 맞춘다.
