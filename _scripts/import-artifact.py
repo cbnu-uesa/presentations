@@ -33,6 +33,9 @@ deck.html 을 손으로 고쳤다면 그 수정은 사라진다. 고칠 것은 �
   · display:flex 인 <p> 의 내용을 <span style="display:block"> 하나로 감싼다.
     브라우저에서는 flex 상자 안의 글과 <span> 이 따로따로 가로로 늘어서고 <br> 이
     먹지 않는다. 아티팩트는 그 내용을 한 덩어리 글로 그린다
+  · data-build-in="효과 순서 [auto]" 를 Reveal 누적 공개(.fragment)로 바꾼다.
+    auto 가 없는 순서는 클릭 한 번, auto 는 바로 앞 순서와 같은 클릭에 나온다.
+    효과(fade·rise·pop…)는 모두 fade-in 으로 둔다. data-build-out 은 아직 못 옮겨 멈춘다
   · <aside>(발표자 노트)를 Reveal 노트(<aside class="notes">)로 바꾼다
   · /_blob/<id> 를 ../assets/<이름> 으로 바꾸고 이미지를 assets/ 에 복사한다.
     600KB 가 넘으면 긴 변 1800px 로 줄인다 (sips). PNG 사진을 .jpg 이름으로 적으면
@@ -131,6 +134,26 @@ for sid in order:
     inner = re.sub(r'/_blob/([0-9a-f]{32})', asset, inner)
     inner = re.sub(r'<x-connector\b[^>]*>(?:</x-connector>)?', connector, inner)
     inner = inner.replace('<aside>', '<aside class="notes">')
+    if 'data-build-out' in inner:
+        sys.exit(f'{sid}: data-build-out 은 아직 옮기지 못합니다')
+    builds = {}                          # 순서 → auto 여부
+    for spec in re.findall(r'data-build-in="([^"]*)"', inner):
+        w = spec.split()
+        n = next((int(t) for t in w if t.isdigit()), 1)
+        builds[n] = builds.get(n, True) and 'auto' in w
+    click, step = -1, {}
+    for n in sorted(builds):         # auto 가 아니면 새 클릭, auto 면 앞 클릭에 붙는다
+        if not builds[n] or click < 0:
+            click += 1
+        step[n] = click
+    def build(mm):
+        w = mm.group(2).split()
+        n = next((int(t) for t in w if t.isdigit()), 1)
+        tag = mm.group(1)
+        if ' class="' in tag:
+            sys.exit(f'{sid}: class 가 이미 있는 요소에 data-build-in')
+        return f'{tag} class="fragment fade-in" data-fragment-index="{step[n]}"'
+    inner = re.sub(r'(<[a-z][a-z0-9-]*\b[^>]*?)\s+data-build-in="([^"]*)"', build, inner)
     inner = re.sub(r'(<p\b[^>]*display:\s*flex[^>]*>)(.*?)(</p>)',
                    r'\1<span style="display:block">\2</span>\3', inner, flags=re.S)
     left = re.findall(r'<x-[a-z]+', inner)
